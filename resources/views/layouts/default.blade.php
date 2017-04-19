@@ -13,7 +13,7 @@
     meta property="og:locale" content="en_US"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="EarthquakePH - Your friendly earthquake barker."/>
-    <meta property="og:description" content="    <meta name="description" content="EarthquakePH is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and notified."/>
+    <meta property="og:description" content="EarthquakePH is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and notified."/>
     "/>
     <meta property="og:url" content="https://earthquake.gundamserver.com"/>
     <meta property="og:site_name" content="EarthquakePH"/>
