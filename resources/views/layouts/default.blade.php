@@ -5,7 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Ridvan Baluyos">
+
+    <meta name="description" content="EarthquakePH is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and notified."/>
+    <link rel="canonical" href="https://earthquake.gundamserver.com"/>
+
+    meta property="og:locale" content="en_US"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="EarthquakePH - Your friendly earthquake barker."/>
+    <meta property="og:description" content="    <meta name="description" content="EarthquakePH is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and notified."/>
+    "/>
+    <meta property="og:url" content="https://earthquake.gundamserver.com"/>
+    <meta property="og:site_name" content="EarthquakePH"/>
+    <meta property="og:image" content="http://www.catfaeries.com/images/newsletter/2014-08-26/cats-under-bed-500.jpg"/>
 
     <title>EarthquakePH - @yield('title')</title>
 
