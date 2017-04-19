@@ -27,8 +27,14 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
      * @param $params - parameters provided (see https://earthquake.usgs.gov/fdsnws/event/1/#parameters)
      * @return mixed $result - json format of earthquake information results
      */
-    public function getEarthquakes($params)
+    public function getEarthquakes($params = [])
     {
+        $params['format'] = 'geojson';
+        $params['minlatitude'] = 5;
+        $params['maxlatitude'] = 20;
+        $params['minlongitude'] = 115;
+        $params['maxlongitude'] = 130;
+
         $serializedKey = md5(serialize($params));
 
         if (Cache::get($serializedKey)) {

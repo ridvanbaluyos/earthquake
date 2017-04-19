@@ -31,9 +31,12 @@ mix.js([
     ],
     'public/js');
 
+// Big JS Files
+mix.copy('resources/assets/js/jquery.min.js', 'public/js');
+mix.copy('resources/assets/js/plugins/moment/moment.min.js', 'public/js');
+mix.copy('resources/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.js', 'public/js');
+
 // Copy Fonts
-mix.copy('resources/assets/js/jquery.min.js', 'public/js'); // too big of a file
-mix.copy('resources/assets/js/bootstrap-datetimepicker.js', 'public/js');
 mix.copy('resources/assets/fonts/font-awesome/', 'public/fonts');
 
 if (mix.config.inProduction) {

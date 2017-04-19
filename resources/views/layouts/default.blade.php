@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">EarthquakePH</a>
+            <a class="navbar-brand" href="/">EarthquakePH <small>(dev)</small></a>
         </div>
         @include('partials.top-menu')
         @include('partials.side-menu')
@@ -53,6 +53,8 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+
+<script src="js/moment.min.js"></script>
 <script src="js/bootstrap-datetimepicker.js"></script>
 <!-- Datetime Picker JS -->
 <script type="text/javascript">

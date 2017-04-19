@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Repositories\USGS\EarthquakeUsgsRepository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+
 use App\Repositories\EarthquakeRepository;
 
 class HomeController extends BaseController
@@ -23,19 +24,48 @@ class HomeController extends BaseController
     {
         $data = [];
 
+        $usgs = new EarthquakeRepository();
+        $earthquakes = $usgs->getEarthquakes();
+
         $params = [
-            'format' => 'geojson',
-//            'starttime' => '2017-04-01 00:00:01', //date('Y-m-d', strtotime('-1 days')),
-//            'endtime' => '2017-04-17 23:59:59', //date('Y-m-d'),
-            'minlatitude' => 5,
-            'maxlatitude' => 20,
-            'minlongitude' => 115,
-            'maxlongitude' =>130,
+            'minmagnitude' => 0,
+            'maxmagnitude' => 10,
+        ];
+
+        $data['earthquakes'] = $earthquakes;
+        $data['params'] = $params;
+        $data['params']['period'] = 30;
+
+        return response()
+            ->view('earthquake-history', ['data' => $data]);
+    }
+
+    public function postEarthquakeHistory(Request $request)
+    {
+        $data = [];
+
+        // date
+        $period = $request->input('period');
+        $startDate = date('Y-m-d', strtotime('- ' . $period . 'days'));
+        $endDate = date('Y-m-d');
+
+        // magnitude
+        $minMagnitude = $request->input('minmagnitude');
+        $maxMagnitude = $request->input('maxmagnitude');
+
+        $params = [
+            'starttime' => $startDate,
+            'endtime' => $endDate,
+            'minmagnitude' => $minMagnitude,
+            'maxmagnitude' => $maxMagnitude,
+
         ];
         $usgs = new EarthquakeRepository();
         $earthquakes = $usgs->getEarthquakes($params);
 
         $data['earthquakes'] = $earthquakes;
+        $data['params'] = $params;
+        $data['params']['period'] = $period;
 
         return response()
             ->view('earthquake-history', ['data' => $data]);
