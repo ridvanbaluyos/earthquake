@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', 'Your friendly earthquake barker')
 @section('header-title', 'Dashboard')
 @section('content')
 <!-- Page Heading -->

@@ -17,7 +17,7 @@
     "/>
     <meta property="og:url" content="https://earthquake.gundamserver.com"/>
     <meta property="og:site_name" content="EarthquakePH"/>
-    <meta property="og:image" content="http://www.catfaeries.com/images/newsletter/2014-08-26/cats-under-bed-500.jpg"/>
+    <meta property="og:image" content="/og-image.jpg"/>
 
     <title>EarthquakePH - @yield('title')</title>
 
