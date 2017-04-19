@@ -20,6 +20,8 @@
     <meta property="og:image" content="/og-image.jpg"/>
 
     <title>EarthquakePH - @yield('title')</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- CSS -->
     <link href="css/all.css" rel="stylesheet">
