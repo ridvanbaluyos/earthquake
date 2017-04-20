@@ -31,7 +31,7 @@
     <div class="col-lg-12 col-sm-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquake Count (Last 360 days)</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquake Count</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
