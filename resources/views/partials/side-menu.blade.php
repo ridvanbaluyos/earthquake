@@ -7,6 +7,9 @@
             <a href="/earthquake-history"><i class="fa fa-fw fa-history"></i> Past Earthquakes</a>
         </li>
         <li>
+            <a href="/earthquake-heatmap"><i class="fa fa-fw fa-globe"></i> Earthquake Heatmap </a>
+        </li>
+        <li>
             <a href="/safety-tips-preparedness"><i class="fa fa-fw fa-life-saver"></i> Safety Tips and Preparedness</a>
         </li>
         <li>

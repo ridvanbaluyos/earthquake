@@ -4,17 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <meta name="author" content="Ridvan Baluyos">
-
-    <meta name="description" content="EarthquakePH is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and notified."/>
+    <meta name="description" content="Earthquake alerts, safety, preparedness, and information in the Philippines."/>
+    <meta name="keywords" content="earthquake today, earthquake philippines, earthquake alert, earthquake alert philippines, phivolcs" />
     <link rel="canonical" href="https://earthquake.gundamserver.com"/>
 
-    meta property="og:locale" content="en_US"/>
+    <meta property="og:locale" content="en_US"/>e
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="EarthquakePH - Your friendly earthquake barker."/>
-    <meta property="og:description" content="EarthquakePH is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and notified."/>
-    "/>
+    <meta property="og:description" content="Earthquake Philippines is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and get notified."/>
     <meta property="og:url" content="https://earthquake.gundamserver.com"/>
     <meta property="og:site_name" content="EarthquakePH"/>
     <meta property="og:image" content="/og-image.jpg"/>

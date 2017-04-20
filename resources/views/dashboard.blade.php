@@ -69,8 +69,8 @@
                                 <button type="submit" class="btn btn-sm btn-success">Filter</button>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <div class="row">
                     <div class="col-lg-12 col-sm-6">
                         <canvas id="earthquake_count_chart" width="10" height="10"></canvas>
@@ -84,32 +84,32 @@
 @endsection
 
 @section('js-page-specific')
-    <script>
-        var ctx = document.getElementById('earthquake_count_chart').getContext('2d');
-        ctx.canvas.width = 600;
-        ctx.canvas.height = 100;
-        var earthquakeCountChart = new Chart(ctx, {
-            type: '{{  $data['params']['chart'] }}',
-            data: {
-                labels: {!!   $data['area_chart']['labels'] !!},
-                datasets: [{
-                    label: '< 5.0mb',
-                    data: {!!   $data['area_chart']['belowLabels'] !!},
-                    backgroundColor: "#00ff00"
-                }, {
-                    label: '>= 5.0mb',
-                    data: {!!   $data['area_chart']['aboveLabels'] !!},
-                    backgroundColor: "#ff0000"
+<script>
+    var ctx = document.getElementById('earthquake_count_chart').getContext('2d');
+    ctx.canvas.width = 600;
+    ctx.canvas.height = 100;
+    var earthquakeCountChart = new Chart(ctx, {
+        type: '{{  $data['params']['chart'] }}',
+        data: {
+            labels: {!!   $data['area_chart']['labels'] !!},
+            datasets: [{
+                label: '< 5.0mb',
+                data: {!!   $data['area_chart']['belowLabels'] !!},
+                backgroundColor: "#00ff00"
+            }, {
+                label: '>= 5.0mb',
+                data: {!!   $data['area_chart']['aboveLabels'] !!},
+                backgroundColor: "#ff0000"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    stacked: true
                 }]
             },
-            options: {
-                scales: {
-                    yAxes: [{
-                        stacked: true
-                    }]
-                },
-                fullWidth: true
-            }
-        });
-    </script>
+            fullWidth: true
+        }
+    });
+</script>
 @endsection

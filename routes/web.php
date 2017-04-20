@@ -15,3 +15,6 @@ Route::get('/', 'HomeController@getIndex');
 Route::post('/', 'HomeController@getIndex');
 Route::get('/earthquake-history', 'HomeController@getEarthquakeHistory');
 Route::post('/earthquake-history', 'HomeController@postEarthquakeHistory');
+
+Route::get('/earthquake-heatmap', 'HomeController@getHeatmap');
+Route::post('/earthquake-heatmap', 'HomeController@getHeatmap');

@@ -34,7 +34,6 @@ class HomeController extends BaseController
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
-        $data['params']['period'] = 30;
         $data['params']['chart'] = $chart;
         $data['params']['period'] = $period;
         $data['params']['filter'] = $filter;
@@ -84,13 +83,13 @@ class HomeController extends BaseController
         $data = [];
 
         // date
-        $period = $request->input('period');
+        $period = $request->input('period', 30);
         $startDate = date('Y-m-d', strtotime('- ' . $period . 'days'));
         $endDate = date('Y-m-d');
 
         // magnitude
-        $minMagnitude = $request->input('minmagnitude');
-        $maxMagnitude = $request->input('maxmagnitude');
+        $minMagnitude = $request->input('minmagnitude', 0);
+        $maxMagnitude = $request->input('maxmagnitude', 10);
 
         $params = [
             'starttime' => $startDate,
@@ -108,5 +107,36 @@ class HomeController extends BaseController
 
         return response()
             ->view('earthquake-history', ['data' => $data]);
+    }
+
+    public function getHeatmap(Request $request)
+    {
+        $period = $request->input('period', 360);
+
+        // magnitude
+        $minMagnitude = $request->input('minmagnitude', 0);
+        $maxMagnitude = $request->input('maxmagnitude', 10);
+
+        $params = [
+            'format' => 'geojson',
+            'minmagnitude' => $minMagnitude,
+            'maxmagnitude' => $maxMagnitude,
+            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
+            'minlatitude' => 5,
+            'maxlatitude' => 20,
+            'minlongitude' => 115,
+            'maxlongitude' =>130
+        ];
+
+        $query = http_build_query($params);
+
+
+        $data = [];
+        $data['params'] = $params;
+        $data['params']['period'] = $period;
+        $data['url'] = 'https://earthquake.usgs.gov/fdsnws/event/1/query?' . $query;
+
+        return response()
+            ->view('heatmap', ['data' => $data]);
     }
 }
