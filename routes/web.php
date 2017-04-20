@@ -12,5 +12,6 @@
 */
 
 Route::get('/', 'HomeController@getIndex');
+Route::post('/', 'HomeController@getIndex');
 Route::get('/earthquake-history', 'HomeController@getEarthquakeHistory');
 Route::post('/earthquake-history', 'HomeController@postEarthquakeHistory');
