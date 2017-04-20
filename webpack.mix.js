@@ -35,6 +35,7 @@ mix.js([
 mix.copy('resources/assets/js/jquery.min.js', 'public/js');
 mix.copy('resources/assets/js/plugins/moment/moment.min.js', 'public/js');
 mix.copy('resources/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.js', 'public/js');
+mix.copy('resources/assets/js/plugins/charts/Chart.min.js', 'public/js');
 
 // Copy Fonts
 mix.copy('resources/assets/fonts/font-awesome/', 'public/fonts');

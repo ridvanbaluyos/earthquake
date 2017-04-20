@@ -73,7 +73,7 @@
                 </form>
                 <div class="row">
                     <div class="col-lg-12 col-sm-6">
-                        <canvas id="myChart" width="10" height="10"></canvas>
+                        <canvas id="earthquake_count_chart" width="10" height="10"></canvas>
                     </div>
                 </div>
 
@@ -85,10 +85,10 @@
 
 @section('js-page-specific')
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx = document.getElementById('earthquake_count_chart').getContext('2d');
         ctx.canvas.width = 600;
         ctx.canvas.height = 100;
-        var myChart = new Chart(ctx, {
+        var earthquakeCountChart = new Chart(ctx, {
             type: '{{  $data['params']['chart'] }}',
             data: {
                 labels: {!!   $data['area_chart']['labels'] !!},
@@ -112,7 +112,4 @@
             }
         });
     </script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 @endsection

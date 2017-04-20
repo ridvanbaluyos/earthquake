@@ -26,9 +26,6 @@
     <!-- CSS -->
     <link href="css/all.css" rel="stylesheet">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,18 +69,7 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script src="js/moment.min.js"></script>
-<script src="js/bootstrap-datetimepicker.js"></script>
-<!-- Datetime Picker JS -->
-<script type="text/javascript">
-    $(function () {
-        $('#start_date, #end_date').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(),
-            useCurrent: true,
-        });
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="js/Chart.min.js"></script>
 
 <!-- Page Specific JS -->
 @yield('js-page-specific')
