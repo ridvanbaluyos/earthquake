@@ -2,8 +2,12 @@
 @section('title', 'Home')
 @section('content')
 <header class="jumbotron hero-spacer">
-    <h1>A Warm Welcome!</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+    <h1>A Warm Kitty Welcome!</h1>
+    <p>
+        Cat ipsum dolor sit amet, howl uncontrollably for no reason. Pee in the shoe spread kitty litter all over house.
+        Lies down sleep on dog bed, force dog to sleep on floor so gnaw the corn cob, asdflkjaertvlkjasntvkjn (sits on
+        keyboard) pushes butt to face curl into a furry donut meow. Run outside as soon as door open.
+    </p>
     <p><a class="btn btn-primary btn-large">Call to action!</a>
     </p>
 </header>
