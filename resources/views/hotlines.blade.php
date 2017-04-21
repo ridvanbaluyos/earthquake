@@ -51,27 +51,44 @@
             </div>
         </div>
         <div class="col-lg-12">
+            @php $ctr = 0; @endphp
             @foreach (config('references.hotlines') as $heading=>$hotlines)
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <strong>{{ $heading }}</strong>
-                </div>
-                <ul class="list-group">
-                    @foreach ($hotlines as $heading2=>$hotline)
-                        <li class="list-group-item">{{ $heading2 }}:
-                            <div class="btn-group" role="group" aria-label="Default button group">
-                            @foreach ($hotline as $number)
-                                <a href="tel:{{ str_replace(['-', '(', ')', ' '], '', $number) }}" class="btn btn-xs btn-default" role="button">{{ $number }}</a>
-                            @endforeach
-                            </div>
+                @php $ctr++; @endphp
+                @if ($ctr % 10 === 0)
+                    @php
+                        $verse = \App\Helpers\Bible\BibleHelper::getRandomVerse();
+                    @endphp
+                    <small>
+                        <blockquote class="blockquote-reverse">
+                            <p>{{ $verse['text'] }}</p>
+                            <footer>{{ $verse['reference'] }} {{ $verse['translation_name'] }}</footer>
+                        </blockquote>
+                    </small>
+                @else
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <strong>{{ $heading }}</strong>
+                        </div>
+                        <ul class="list-group">
+                            @foreach ($hotlines as $heading2=>$hotline)
+                                <li class="list-group-item">{{ $heading2 }}:
+                                    <div class="btn-group" role="group" aria-label="Default button group">
+                                        @foreach ($hotline as $number)
+                                            <a href="tel:{{ str_replace(['-', '(', ')', ' '], '', $number) }}" class="btn btn-xs btn-default" role="button">{{ $number }}</a>
+                                        @endforeach
+                                    </div>
 
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             @endforeach
             <p>
-                <small><em>source: <a href="//www.gov.ph/emergency-hotlines/" target="_blank">gov.ph</a></em></small>
+                <small><em>source:
+                    <a href="//www.gov.ph/emergency-hotlines/" target="_blank">gov.ph</a>,
+                    <a href="http://www.rappler.com/bulletin-board/36729-emergency-hotlines" target="_blank">rappler.com</a>
+                </em></small>
             </p>
         </div>
     </div>

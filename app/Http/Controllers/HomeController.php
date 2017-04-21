@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Repositories\EarthquakeRepository;
 use App\Helpers\Charts\ChartHelper;
+use App\Helpers\Bible\BibleHelper;
 
 class HomeController extends BaseController
 {
