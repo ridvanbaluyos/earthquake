@@ -9,7 +9,7 @@
     <meta name="keywords" content="earthquake today, earthquake philippines, earthquake alert, earthquake alert philippines, phivolcs" />
     <link rel="canonical" href="https://earthquake.gundamserver.com"/>
 
-    <meta property="og:locale" content="en_US"/>e
+    <meta property="og:locale" content="en_US"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="EarthquakePH - Your friendly earthquake barker."/>
     <meta property="og:description" content="Earthquake Philippines is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and get notified."/>
@@ -32,40 +32,78 @@
     <![endif]-->
 </head>
 <body>
-<div id="wrapper">
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">EarthquakePH <small>(dev)</small></a>
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Earthquake Philippines</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/earthquakes"><i class="fa fa-history"></i> All</a>
+                    </li>
+                    <li>
+                        <a href="/earthquake-graphs-charts"><i class="fa fa-line-chart"></i> Graphs</a>
+                    </li>
+                    <li>
+                        <a href="/earthquake-heatmap"><i class="fa fa-thermometer-half"></i> Heatmap</a>
+                    </li>
+                    <li>
+                        <a href="/earthquake-safety-and-preparedness"><i class="fa fa-fw fa-life-saver"></i> Safety and Preparedness</a>
+                    </li>
+                    <li>
+                        <a href="/earthquake-survival-kit"><i class="fa fa-fw fa-medkit"></i> Survival Kit</a>
+                    </li>
+                    <li>
+                        <a href="/earthquake-hotlines"><i class="fa fa-fw fa-volume-control-phone"></i> Hotlines</a>
+                    </li>
+                    <li>
+                        <a href="/about"><i class="fa fa-fw fa-info-circle"></i> About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        @include('partials.top-menu')
-        @include('partials.side-menu')
-        <!-- /.navbar-collapse -->
+        <!-- /.container -->
     </nav>
 
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            @yield('content')
-        </div>
-        <!-- /.container-fluid -->
-
+    <!-- Page Content -->
+    <div class="container">
+        @yield('content')
+        <!-- /.row -->
+        <hr>
     </div>
-    <!-- /#page-wrapper -->
-</div>
+    <div class="container">
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    <small>nose boop <a href="https://ridvanbaluyos.com">ridvanbaluyos.com</a></small>
+                    <small>data source <a href="https://earthquake.usgs.gov/">u.s. geological survey</a></small>
+                </p>
+            </div>
+        </div>
+    </footer>
+    </div>
 
-<!-- jQuery -->
+<!-- JQuery -->
 <script src="js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
+<!-- Charts -->
 <script src="js/moment.min.js"></script>
 <script src="js/Chart.min.js"></script>
 

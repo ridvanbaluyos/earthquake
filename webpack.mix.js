@@ -17,9 +17,8 @@ const { mix } = require('laravel-mix');
 // CSS
 mix.styles([
         'resources/assets/css/bootstrap.min.css',
-        'resources/assets/css/bootstrap-datetimepicker.css',
         'resources/assets/css/font-awesome.min.css',
-        'resources/assets/css/sb-admin.css'
+        'resources/assets/css/app.css',
     ],
     'public/css/all.css'
 );
@@ -34,7 +33,6 @@ mix.js([
 // Big JS Files
 mix.copy('resources/assets/js/jquery.min.js', 'public/js');
 mix.copy('resources/assets/js/plugins/moment/moment.min.js', 'public/js');
-mix.copy('resources/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.js', 'public/js');
 mix.copy('resources/assets/js/plugins/charts/Chart.min.js', 'public/js');
 
 // Copy Fonts

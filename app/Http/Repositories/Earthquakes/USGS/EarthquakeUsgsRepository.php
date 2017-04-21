@@ -19,6 +19,7 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
 
     public function __construct() {
         $this->url = 'https://earthquake.usgs.gov/fdsnws/event/1/';
+
     }
     /**
      * This function queries the Digital Siesmograph Networks based from the parameters
@@ -36,12 +37,11 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
         $params['maxlongitude'] = 130;
 
         $serializedKey = md5(serialize($params));
+        $this->url = $url = $this->url . 'query?' . http_build_query($params);
 
         if (Cache::get($serializedKey)) {
             return Cache::get($serializedKey);
         } else {
-            $endpoint = 'query';
-            $url = $this->url . $endpoint . '?' . http_build_query($params);
 
             $ch = curl_init();
             curl_setopt($ch,CURLOPT_URL,$url);
@@ -55,6 +55,10 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
 
             return $earthquakes;
         }
+    }
 
+    public function getSourceUrl()
+    {
+        return $this->url;
     }
 }

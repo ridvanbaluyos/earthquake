@@ -13,8 +13,15 @@
 
 Route::get('/', 'HomeController@getIndex');
 Route::post('/', 'HomeController@getIndex');
-Route::get('/earthquake-history', 'HomeController@getEarthquakeHistory');
-Route::post('/earthquake-history', 'HomeController@postEarthquakeHistory');
+Route::get('/earthquakes', 'HomeController@getEarthquakeHistory');
+Route::post('/earthquakes', 'HomeController@postEarthquakeHistory');
 
-Route::get('/earthquake-heatmap', 'HomeController@getHeatmap');
-Route::post('/earthquake-heatmap', 'HomeController@getHeatmap');
+Route::get('/earthquake-heatmap', 'HomeController@getGraphCharts');
+Route::post('/earthquake-heatmap', 'HomeController@getGraphCharts');
+
+Route::get('/earthquake-graphs-charts', 'HomeController@getGraphCharts');
+Route::post('/earthquake-graphs-charts', 'HomeController@getGraphCharts');
+
+Route::get('/earthquake-hotlines', 'HomeController@getHotlines');
+
+Route::get('/about', 'HomeController@getAbout');

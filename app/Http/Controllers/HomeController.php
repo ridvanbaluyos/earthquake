@@ -17,6 +17,26 @@ class HomeController extends BaseController
     public function getIndex(Request $request)
     {
         $data = [];
+        $period = $request->input('period', 60);
+        $params = [
+            'minmagnitude' => 0,
+            'maxmagnitude' => 10,
+            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
+            'limit' => '4'
+        ];
+
+        $usgs = new EarthquakeRepository();
+        $earthquakes = $usgs->getEarthquakes($params);
+
+        $data['earthquakes'] = $earthquakes;
+
+        return response()
+            ->view('home', ['data' => $data]);
+    }
+
+    public function getGraphCharts(Request $request)
+    {
+        $data = [];
 
         $period = $request->input('period', 7200);
         $chart = $request->input('chart', 'bar');
@@ -25,12 +45,14 @@ class HomeController extends BaseController
         $params = [
             'minmagnitude' => 0,
             'maxmagnitude' => 10,
-            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days'))
+            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
+            'limit' => '7200'
         ];
 
         $usgs = new EarthquakeRepository();
         $earthquakes = $usgs->getEarthquakes($params);
         $areaChart = ChartHelper::formatStackedAreaChart($earthquakes, $filter);
+        $url = $usgs->getSourceUrl();
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
@@ -38,24 +60,16 @@ class HomeController extends BaseController
         $data['params']['period'] = $period;
         $data['params']['filter'] = $filter;
         $data['area_chart'] = $areaChart;
+        $data['url'] = $url;
 
-        return response()
-            ->view('dashboard', ['data' => $data]);
-    }
-
-    private function getFilterBasedFromDays($period)
-    {
-        $filter = 'days';
-
-        if ($period <= 30) {
-            $filter = 'days';
-        } else if ($period > 30 && $period <= 1800) {
-            $filter = 'months';
-        } else if ($period > 1800) {
-            $filter = 'years';
+        if ($request->segment(1) === 'earthquake-graphs-charts') {
+            return response()
+                ->view('graph-charts', ['data' => $data]);
+        } else {
+            return response()
+                ->view('heatmap', ['data' => $data]);
         }
 
-        return $filter;
     }
 
     public function getEarthquakeHistory()
@@ -72,10 +86,10 @@ class HomeController extends BaseController
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
-        $data['params']['period'] = 30;
+        $data['params']['period'] = 7;
 
         return response()
-            ->view('earthquake-history', ['data' => $data]);
+            ->view('history', ['data' => $data]);
     }
 
     public function postEarthquakeHistory(Request $request)
@@ -106,37 +120,37 @@ class HomeController extends BaseController
         $data['params']['period'] = $period;
 
         return response()
-            ->view('earthquake-history', ['data' => $data]);
+            ->view('history', ['data' => $data]);
     }
 
-    public function getHeatmap(Request $request)
+    public function getHotlines()
     {
-        $period = $request->input('period', 360);
-
-        // magnitude
-        $minMagnitude = $request->input('minmagnitude', 0);
-        $maxMagnitude = $request->input('maxmagnitude', 10);
-
-        $params = [
-            'format' => 'geojson',
-            'minmagnitude' => $minMagnitude,
-            'maxmagnitude' => $maxMagnitude,
-            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
-            'minlatitude' => 5,
-            'maxlatitude' => 20,
-            'minlongitude' => 115,
-            'maxlongitude' =>130
-        ];
-
-        $query = http_build_query($params);
-
-
         $data = [];
-        $data['params'] = $params;
-        $data['params']['period'] = $period;
-        $data['url'] = 'https://earthquake.usgs.gov/fdsnws/event/1/query?' . $query;
 
         return response()
-            ->view('heatmap', ['data' => $data]);
+            ->view('hotlines', ['data' => $data]);
+    }
+
+    public function getAbout()
+    {
+        $data = [];
+
+        return response()
+            ->view('about', ['data' => $data]);
+    }
+
+    private function getFilterBasedFromDays($period)
+    {
+        $filter = 'days';
+
+        if ($period <= 30) {
+            $filter = 'days';
+        } else if ($period > 30 && $period <= 1800) {
+            $filter = 'months';
+        } else if ($period > 1800) {
+            $filter = 'years';
+        }
+
+        return $filter;
     }
 }
