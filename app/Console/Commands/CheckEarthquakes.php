@@ -41,6 +41,7 @@ class CheckEarthquakes extends Command
     {
         $minutes = $this->argument('minutes');
         //
+        echo self::log("=============================================", 'info');
         echo self::log('[Starting ' . Carbon::create() . ']', 'info');
         echo self::log('[Setting timezone to UTC]', 'info');
         date_default_timezone_set('UTC');
@@ -87,6 +88,7 @@ class CheckEarthquakes extends Command
         }
 
         echo self::log('[End ' . Carbon::create() . ']', 'info');
+        echo self::log("=============================================\n", 'info');
 
     }
 
