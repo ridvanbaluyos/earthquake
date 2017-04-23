@@ -75,13 +75,14 @@ class CheckEarthquakes extends Command
             echo self::log('Sending SMS content below', 'debug');
             echo self::log($message, 'debug');
 
-            $smsResponse = self::sendSms($message, true);
+            $smsResponse = self::sendSms($message);
             $smsResponse = json_decode($smsResponse, true);
 
             if (isset($smsResponse[0]['message_id'])) {
                 echo self::log('[Message sent to ' . config('app.my_number') . ']', 'success');
             } else {
-                echo self::log('[Message failed to ' . $smsResponse['phone'] . ']', 'alert');
+                echo self::log('[Message failed to ' . config('app.my_number') . ']', 'alert');
+                echo self::log('[' . $smsResponse[0] . ']', 'alert');
             }
         }
 
