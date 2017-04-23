@@ -133,7 +133,7 @@ class CheckEarthquakes extends Command
             'apikey' => config('app.semaphore_api_key'),
             'number' => config('app.my_number'),
             'message' => $message,
-            'sendername' => confg('app.semaphore_sender')
+            'sendername' => config('app.semaphore_sender')
         );
         curl_setopt( $ch, CURLOPT_URL,'http://api.semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
