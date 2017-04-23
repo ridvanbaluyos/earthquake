@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $filePath = __DIR__ . '/../../storage/logs/earthquake.log';
-        $schedule->command('earthquakes:check 5')->everyMinute()->withoutOverlapping()->appendOutputTo($filePath);
+        $schedule->command('earthquakes:check 6')->everyMinute()->withoutOverlapping()->appendOutputTo($filePath);
         // $schedule->command('inspire')
         //          ->hourly();
     }
