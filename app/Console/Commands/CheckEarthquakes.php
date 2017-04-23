@@ -58,10 +58,10 @@ class CheckEarthquakes extends Command
         $earthquakes = $usgs->getEarthquakes($params);
 
         if (empty($earthquakes->features)) {
-            echo self::log('[Hoooray! No earthquakes found!]', 'success');
+            echo self::log('[Hoooray! No earthquakes detected!]', 'success');
         } else {
             echo self::log('[' . count($earthquakes->features) .' earthquake(s) found!]', 'alert');
-            $message = count($earthquakes->features) . ' earthquake(s) found!';
+            $message = count($earthquakes->features) . ' earthquake(s) detected!';
             $message .= "\n";
 
             foreach ($earthquakes->features as $earthquake) {
