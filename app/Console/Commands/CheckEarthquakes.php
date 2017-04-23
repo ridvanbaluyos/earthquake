@@ -79,7 +79,7 @@ class CheckEarthquakes extends Command
             echo self::log('Sending the ff. content below', 'debug');
             echo self::log($message, 'debug');
 
-            self::sendSms($message, true);
+            self::sendSms($message);
             self::sendNotifications($earthquakes);
 
         }
