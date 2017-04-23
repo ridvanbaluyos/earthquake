@@ -39,17 +39,11 @@ class HomeController extends BaseController
     {
         $data = [];
 
-        if ($request->segment(1) === 'earthquake-graphs-charts') {
-            $template = 'graph-charts';
-            $period = 360;
-        } else {
-            $template = 'heatmap';
-            $period = 7;
-        }
+        $period = 30;
 
         $period = $request->input('period', $period);
         $chart = $request->input('chart', 'bar');
-        $filter = $request->input('filter', 'months');
+        $filter = $request->input('filter', 'days');
 
         $params = [
             'minmagnitude' => 0,
@@ -64,14 +58,13 @@ class HomeController extends BaseController
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
-        $data['params']['chart'] = $chart;
         $data['params']['period'] = $period;
         $data['params']['filter'] = $filter;
         $data['area_chart'] = $areaChart;
         $data['url'] = $url;
 
         return response()
-            ->view($template, ['data' => $data]);
+            ->view('graph-charts', ['data' => $data]);
 
     }
 
@@ -131,6 +124,20 @@ class HomeController extends BaseController
 
         return response()
             ->view('history', ['data' => $data]);
+    }
+
+
+    public function getEarthquakeDetails(Request $request, $id)
+    {
+        $data = [];
+
+        $usgs =  new EarthquakeRepository();
+        $earthquake = $usgs->getEarthquake($id);
+
+        $data['earthquake'] = $earthquake;
+
+        return response()
+            ->view('details', ['data' => $data]);
     }
 
     public function getHotlines()

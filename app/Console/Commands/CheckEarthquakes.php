@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 use App\Repositories\EarthquakeRepository;
+use App\Mail\EarthquakeAlert;
 use Carbon\Carbon;
 
 class CheckEarthquakes extends Command
@@ -48,6 +50,7 @@ class CheckEarthquakes extends Command
 
         echo self::log('[Checking for earthquakes in the last '. $minutes .' minute(s)]', 'info');
         echo self::log('[Fetching data from U.S. Geological Survey]', 'info');
+
         $params = [
             'minmagnitude' => 0,
             'maxmagnitude' => 10,
@@ -73,23 +76,67 @@ class CheckEarthquakes extends Command
             }
 
             echo self::log('[Sending notifications to subscribers]', 'info');
-            echo self::log('Sending SMS content below', 'debug');
+            echo self::log('Sending the ff. content below', 'debug');
             echo self::log($message, 'debug');
 
-            $smsResponse = self::sendSms($message);
-            $smsResponse = json_decode($smsResponse, true);
+            self::sendSms($message, true);
+            self::sendNotifications($earthquakes);
 
-            if (isset($smsResponse[0]['message_id'])) {
-                echo self::log('[Message sent to ' . config('app.my_number') . ']', 'success');
-            } else {
-                echo self::log('[Message failed to ' . config('app.my_number') . ']', 'alert');
-                echo self::log('[' . $smsResponse[0] . ']', 'alert');
-            }
         }
 
         echo self::log('[End ' . Carbon::create() . ']', 'info');
         echo self::log("=============================================\n", 'info');
 
+    }
+
+    private static function sendNotifications($earthquakes)
+    {
+        $subject = '[ALERT] ' . count($earthquakes) . ' earthquake(s) detected';
+
+        $data = [
+            'subject'=> $subject,
+            'earthquakes' => $earthquakes
+        ];
+
+        Mail::to(config('mail.my_email'))
+            ->send(new EarthquakeAlert($data));
+
+        echo self::log('[Email successfully sent to ' . config('mail.my_email') .']', 'success');
+
+    }
+
+    private static function sendSms($message, $debug = false)
+    {
+        if ($debug) {
+            $smsResponse = '[{"message_id":46811653412342,"user_id":2976121,"user":"user@user.com","account_id":2907111,"account":"Test","recipient":"639231000001","message":"3 earthquake(s) found!\n M 5.3 - 12km E of Burgos, Philippines\n M 4.5 - 157km SE of Pondaguitan, Philippines\n M 4.9 - 10km ENE of Bangonay, Philippines\n","sender_name":"Semaphore","network":"Smart","status":"Queued","type":"Single","source":"Api","created_at":"2017-04-23 16:05:05","updated_at":"2017-04-23 16:05:06"}]';
+        } else {
+            $ch = curl_init();
+            $parameters = array(
+                'apikey' => config('app.semaphore_api_key'),
+                'number' => config('app.my_number'),
+                'message' => $message,
+//            'sendername' => config('app.semaphore_sender')
+            );
+            curl_setopt( $ch, CURLOPT_URL,'http://api.semaphore.co/api/v4/messages' );
+            curl_setopt( $ch, CURLOPT_POST, 1 );
+
+            //Send the parameters set above with the request
+            curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
+
+            // Receive response from server
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            $smsResponse = curl_exec($ch);
+            curl_close ($ch);
+        }
+
+        $smsResponse = json_decode($smsResponse, true);
+
+        if (isset($smsResponse[0]['message_id'])) {
+            echo self::log('[SMS successfully sent to ' . config('app.my_number') . ']', 'success');
+        } else {
+            echo self::log('[SMS failed sending to ' . config('app.my_number') . ']', 'alert');
+            echo self::log('[' . $smsResponse[0] . ']', 'alert');
+        }
     }
 
     // TODO: Transfer these functions to the correct repository
@@ -119,36 +166,4 @@ class CheckEarthquakes extends Command
         return chr(27) . $color . strtoupper($level) . ': ' . $text  . chr(27) . "[0m\n";
     }
 
-    private static function sendNotifications()
-    {
-
-    }
-
-    // semaphore
-    private static function sendSms($message, $debug = false)
-    {
-        if ($debug) {
-            return '[{"message_id":46811653412342,"user_id":2976121,"user":"user@user.com","account_id":2907111,"account":"Test","recipient":"639231000001","message":"3 earthquake(s) found!\n M 5.3 - 12km E of Burgos, Philippines\n M 4.5 - 157km SE of Pondaguitan, Philippines\n M 4.9 - 10km ENE of Bangonay, Philippines\n","sender_name":"Semaphore","network":"Smart","status":"Queued","type":"Single","source":"Api","created_at":"2017-04-23 16:05:05","updated_at":"2017-04-23 16:05:06"}]';
-        }
-
-        $ch = curl_init();
-        $parameters = array(
-            'apikey' => config('app.semaphore_api_key'),
-            'number' => config('app.my_number'),
-            'message' => $message,
-//            'sendername' => config('app.semaphore_sender')
-        );
-        curl_setopt( $ch, CURLOPT_URL,'http://api.semaphore.co/api/v4/messages' );
-        curl_setopt( $ch, CURLOPT_POST, 1 );
-
-        //Send the parameters set above with the request
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
-
-        // Receive response from server
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        $output = curl_exec( $ch );
-        curl_close ($ch);
-
-        return $output;
-    }
 }

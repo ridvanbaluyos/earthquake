@@ -45,7 +45,7 @@
                         {{ $earthquake->geometry->coordinates[2] }} km
                     </small>
                     <br>
-                    <button type="button" class="btn btn-xs btn-link">more info</button>
+                    <a href="/earthquakes/{{ $earthquake->id }}" class="btn btn-xs btn-link">more info</a>
                 </p>
             </div>
         </div>

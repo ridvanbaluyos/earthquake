@@ -22,7 +22,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- CSS -->
-    <link href="css/all.css" rel="stylesheet">
+    <link href="{{ mix('/css/all.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,14 +55,14 @@
                     <li>
                         <a href="/earthquake-graphs-charts"><i class="fa fa-line-chart"></i> Graphs</a>
                     </li>
-                    <li>
-                        <a href="/earthquake-heatmap"><i class="fa fa-thermometer-half"></i> Heatmap</a>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="/earthquake-heatmap"><i class="fa fa-thermometer-half"></i> Heatmap</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="/earthquake-safety-and-preparedness"><i class="fa fa-fw fa-life-saver"></i> Safety and Preparedness</a>
                     </li>
                     <li>
-                        <a href="/earthquake-survival-kit"><i class="fa fa-fw fa-medkit"></i> Survival Kit</a>
+                        <a href="/earthquake-101"><i class="fa fa-fw fa-lightbulb-o"></i> Earthquake 101</a>
                     </li>
                     <li>
                         <a href="/earthquake-hotlines"><i class="fa fa-fw fa-volume-control-phone"></i> Hotlines</a>
@@ -88,7 +88,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>
+                <p class="text-right">
                     <small>nose boop <a href="https://ridvanbaluyos.com">ridvanbaluyos.com</a></small>
                     <small>data source <a href="https://earthquake.usgs.gov/">u.s. geological survey</a></small>
                 </p>
@@ -98,14 +98,14 @@
     </div>
 
 <!-- JQuery -->
-<script src="js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Charts -->
-<script src="js/moment.min.js"></script>
-<script src="js/Chart.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/Chart.min.js"></script>
 
 <!-- Page Specific JS -->
 @yield('js-page-specific')
