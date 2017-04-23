@@ -65,7 +65,7 @@
                         <br>
                         <small>
                             <i class="fa fa-clock-o"></i>
-                            {{ date('d M Y H:i:s', intval($earthquake->properties->time)/1000) }}
+                            {{ \App\Helpers\DateHelper\DateHelper::convertDate($earthquake->properties->time) }}
                         </small>
                         <br>
                         <small>

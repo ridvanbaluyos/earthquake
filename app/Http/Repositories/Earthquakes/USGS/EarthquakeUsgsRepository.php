@@ -3,6 +3,7 @@ namespace App\Repositories\USGS;
 
 use App\Repositories\EarthquakeRepositoryInterface;
 use Cache;
+use Carbon\Carbon;
 
 /**
  * USGS - Earthquake Catalog
@@ -31,10 +32,10 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
     public function getEarthquakes($params = [])
     {
         $params['format'] = 'geojson';
-        $params['minlatitude'] = 5;
-        $params['maxlatitude'] = 20;
-        $params['minlongitude'] = 115;
-        $params['maxlongitude'] = 130;
+        $params['minlatitude'] = config('app.minlatitude');
+        $params['maxlatitude'] = config('app.maxlatitude');
+        $params['minlongitude'] = config('app.minlongitude');
+        $params['maxlongitude'] = config('app.maxlongitude');
 
         $serializedKey = md5(serialize($params));
         $this->url = $url = $this->url . 'query?' . http_build_query($params);
@@ -42,7 +43,6 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
         if (Cache::get($serializedKey)) {
             return Cache::get($serializedKey);
         } else {
-
             $ch = curl_init();
             curl_setopt($ch,CURLOPT_URL,$url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -51,7 +51,9 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
             curl_close($ch);
             $earthquakes = json_decode($result);
 
-            Cache::forever($serializedKey, $earthquakes);
+            // Cache for 1 day
+            $expiresAt = Carbon::now()->addDays(1);
+            Cache::put($serializedKey, $earthquakes, $expiresAt);
 
             return $earthquakes;
         }

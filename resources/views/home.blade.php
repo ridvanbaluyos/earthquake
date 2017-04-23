@@ -26,9 +26,9 @@
             <div class="caption">
                 <h3>
                     @if ($earthquake->properties->mag >= 5)
-                        <span class="label label-danger">{{ $earthquake->properties->mag }}</span>
+                        <span class="label label-danger"><i class="fa fa-flash"></i> {{ $earthquake->properties->mag }}</span>
                     @elseif ($earthquake->properties->mag < 5 && $earthquake->properties->mag > 4)
-                        <span class="label label-info">{{  $earthquake->properties->mag }}</span>
+                        <span class="label label-info"><i class="fa fa-flash"></i> {{  $earthquake->properties->mag }}</span>
                     @endif
                 </h3>
                 <p>
@@ -38,7 +38,7 @@
                     <br>
                     <small>
                         <i class="fa fa-calendar"></i>
-                        {{ date('d M Y H:i:s', intval($earthquake->properties->time)/1000) }}
+                        {{ \App\Helpers\DateHelper\DateHelper::convertDate($earthquake->properties->time) }}
                     </small>
                     <br>
                     <small>

@@ -39,7 +39,15 @@ class HomeController extends BaseController
     {
         $data = [];
 
-        $period = $request->input('period', 7200);
+        if ($request->segment(1) === 'earthquake-graphs-charts') {
+            $template = 'graph-charts';
+            $period = 360;
+        } else {
+            $template = 'heatmap';
+            $period = 7;
+        }
+
+        $period = $request->input('period', $period);
         $chart = $request->input('chart', 'bar');
         $filter = $request->input('filter', 'months');
 
@@ -47,7 +55,6 @@ class HomeController extends BaseController
             'minmagnitude' => 0,
             'maxmagnitude' => 10,
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
-            'limit' => '7200'
         ];
 
         $usgs = new EarthquakeRepository();
@@ -63,13 +70,8 @@ class HomeController extends BaseController
         $data['area_chart'] = $areaChart;
         $data['url'] = $url;
 
-        if ($request->segment(1) === 'earthquake-graphs-charts') {
-            return response()
-                ->view('graph-charts', ['data' => $data]);
-        } else {
-            return response()
-                ->view('heatmap', ['data' => $data]);
-        }
+        return response()
+            ->view($template, ['data' => $data]);
 
     }
 
@@ -77,8 +79,15 @@ class HomeController extends BaseController
     {
         $data = [];
 
+        $period = 90;
+        $params = [
+            'minmagnitude' => 0,
+            'maxmagnitude' => 10,
+            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
+        ];
+
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->getEarthquakes();
+        $earthquakes = $usgs->getEarthquakes($params);
 
         $params = [
             'minmagnitude' => 0,
@@ -87,7 +96,7 @@ class HomeController extends BaseController
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
-        $data['params']['period'] = 7;
+        $data['params']['period'] = $period;
 
         return response()
             ->view('history', ['data' => $data]);

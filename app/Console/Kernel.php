@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\CheckEarthquakes::class
     ];
 
     /**
@@ -24,6 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $filePath = __DIR__ . '/../../storage/logs/earthquake.log';
+        $schedule->command('earthquakes:check 5')->everyMinute()->withoutOverlapping()->sendOutputTo($filePath);
         // $schedule->command('inspire')
         //          ->hourly();
     }

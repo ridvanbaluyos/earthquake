@@ -20,7 +20,7 @@
 */
 
 require __DIR__.'/../bootstrap/autoload.php';
-
+date_default_timezone_set('Asia/Manila');
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights

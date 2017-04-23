@@ -229,5 +229,19 @@ return [
     ],
 
     // API Keys
-    'google_maps_api_key' => env('GOOGLE_MAPS_API_KEY')
+    'google_maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
+    'semaphore_api_key' => env('SMS_SEMAPHORE_API_KEY'),
+    'semaphore_sender' => env('SMS_SEMAPHORE_SENDER'),
+    'chikka_secret_key' => env('SMS_CHIKKA_SECRET_KEY'),
+    'chikka_client_id' => env('SMS_CHIKKA_CLIENT_ID'),
+    'chikka_shortcode' => env('SMS_CHIKKA_SHORTCODE'),
+
+    // my number, temporary
+    'my_number' => env('MY_NUMBER'),
+
+    // Philippine Latitude and Longitude
+    'minlatitude' => env('PH_MIN_LATITUDE'),
+    'maxlatitude' => env('PH_MAX_LATITUDE'),
+    'minlongitude' => env('PH_MIN_LONGITUDE'),
+    'maxlongitude' => env('PH_MAX_LONGITUDE')
 ];

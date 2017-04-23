@@ -21,15 +21,6 @@
             </div>
             <div class="col-lg-3 col-sm-1">
                 <div class="form-group">
-                    <select class="form-control" name="filter">
-                        @foreach (['days', 'months', 'years'] as $v)
-                            <option value="{{ $v }}" @if ($data['params']['filter'] == $v) selected="selected"@endif>{{ ucfirst($v) }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-1">
-                <div class="form-group">
                     <button type="submit" class="btn btn-sm btn-success">Filter</button>
                 </div>
             </div>
