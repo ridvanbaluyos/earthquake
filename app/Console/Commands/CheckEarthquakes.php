@@ -91,7 +91,7 @@ class CheckEarthquakes extends Command
 
     private static function sendNotifications($earthquakes)
     {
-        $subject = '[ALERT] ' . count($earthquakes) . ' earthquake(s) detected';
+        $subject = '[ALERT] ' . count($earthquakes->features) . ' earthquake(s) detected';
 
         $data = [
             'subject'=> $subject,
