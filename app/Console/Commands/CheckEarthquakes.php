@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Repositories\EarthquakeRepository;
+use Carbon\Carbon;
 
 class CheckEarthquakes extends Command
 {
@@ -40,6 +41,7 @@ class CheckEarthquakes extends Command
     {
         $minutes = $this->argument('minutes');
         //
+        echo self::log('[Starting ' . Carbon::create() . ']', 'info');
         echo self::log('[Setting timezone to UTC]', 'info');
         date_default_timezone_set('UTC');
 
@@ -83,7 +85,7 @@ class CheckEarthquakes extends Command
             }
         }
 
-        echo self::log('[Stopping...]', 'info');
+        echo self::log('[End ' . Carbon::create() . ']', 'info');
 
     }
 
