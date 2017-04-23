@@ -13,7 +13,7 @@ class CheckEarthquakes extends Command
      *
      * @var string
      */
-    protected $signature = 'earthquakes:check {minutes=5}';
+    protected $signature = 'earthquakes:check {minutes=10}';
 
     /**
      * The console command description.
