@@ -12,7 +12,7 @@
     <meta property="og:locale" content="en_US"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Earthquake Philippines - Your friendly earthquake barker"/>
-    <meta property="og:description" content="Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs. It also provides safety, graphs and charts, references, and useful information about earthquakes."/>
+    <meta property="og:description" content="Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs. It also provides earthquake safety tips and information, graphs and charts, references, and other useful information about earthquakes."/>
     <meta property="og:url" content="https://earthquake.ph"/>
     <meta property="og:site_name" content="Earthquake Philippines"/>
     <meta property="og:image" content="https://earthquake.ph/og-image.jpeg"/>
