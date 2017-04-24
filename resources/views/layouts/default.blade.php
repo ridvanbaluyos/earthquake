@@ -15,7 +15,7 @@
     <meta property="og:description" content="Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs. It also provides safety, graphs and charts, references, and useful information about earthquakes."/>
     <meta property="og:url" content="https://earthquake.ph"/>
     <meta property="og:site_name" content="Earthquake Philippines"/>
-    <meta property="og:image" content="/og-image.jpeg"/>
+    <meta property="og:image" content="https://earthquake.ph/og-image.jpeg"/>
 
     <title>EarthquakePH - @yield('title')</title>
     <link rel="shortcut icon" href="/favicon.gif" type="image/x-icon">
