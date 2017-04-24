@@ -88,9 +88,8 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p class="text-right">
+                <p class="text-center">
                     <small>nose boop <a href="https://ridvanbaluyos.com">ridvanbaluyos.com</a></small>
-                    <small>data source <a href="https://earthquake.usgs.gov/">u.s. geological survey</a></small>
                 </p>
             </div>
         </div>

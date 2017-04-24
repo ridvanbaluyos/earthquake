@@ -135,9 +135,18 @@ class HomeController extends BaseController
         $earthquake = $usgs->getEarthquake($id);
 
         $data['earthquake'] = $earthquake;
+        $data['url'] = $usgs->getSourceUrl();
 
         return response()
             ->view('details', ['data' => $data]);
+    }
+
+    public function getEarthquake101(Request $request)
+    {
+        $data = [];
+
+        return response()
+            ->view('earthquake101', ['data' => $data]);
     }
 
     public function getHotlines()

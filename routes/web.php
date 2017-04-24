@@ -24,6 +24,8 @@ Route::post('/earthquake-heatmap', 'HomeController@getGraphCharts');
 Route::get('/earthquake-graphs-charts', 'HomeController@getGraphCharts');
 Route::post('/earthquake-graphs-charts', 'HomeController@getGraphCharts');
 
+Route::get('/earthquake-101', 'HomeController@getEarthquake101');
+
 Route::get('/earthquake-hotlines', 'HomeController@getHotlines');
 
 Route::get('/about', 'HomeController@getAbout');

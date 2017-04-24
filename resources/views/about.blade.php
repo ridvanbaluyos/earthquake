@@ -22,7 +22,7 @@
                     <a href="//getbootstrap.com/" target="_blank">Bootstrap</a> - Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
                 </li>
                 <li>
-                    <a href="//www.chartjs.org/" target="_blank">Charts.js</a> - Simple yet flexible JavaScript charting for designers & developers..
+                    <a href="//www.chartjs.org/" target="_blank">Charts.js</a> - Simple yet flexible JavaScript charting for designers & developers.
                 </li>
                 <li>
                     <a href=//developers.google.com/maps/" target="_blank">Google Maps API</a> - Millions of websites and apps use Google Maps APIs to power location experiences for their users.
