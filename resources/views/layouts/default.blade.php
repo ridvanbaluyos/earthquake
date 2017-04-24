@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Ridvan Baluyos">
-    <meta name="description" content="Earthquake alerts, safety, preparedness, and information in the Philippines."/>
+    <meta name="description" content="Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs. It also provides safety, graphs and charts, references, and useful information about earthquakes."/>
     <meta name="keywords" content="earthquake today, earthquake philippines, earthquake alert, earthquake alert philippines, phivolcs" />
     <link rel="canonical" href="https://earthquake.gundamserver.com"/>
 
     <meta property="og:locale" content="en_US"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="EarthquakePH - Your friendly earthquake barker."/>
-    <meta property="og:description" content="Earthquake Philippines is an aggregator of earthquake information, from various reliable sources, in order to help Filipinos prepare and get notified."/>
-    <meta property="og:url" content="https://earthquake.gundamserver.com"/>
-    <meta property="og:site_name" content="EarthquakePH"/>
-    <meta property="og:image" content="/og-image.jpg"/>
+    <meta property="og:title" content="Earthquake Philippines - Your friendly earthquake barker"/>
+    <meta property="og:description" content="Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs. It also provides safety, graphs and charts, references, and useful information about earthquakes."/>
+    <meta property="og:url" content="https://earthquake.ph"/>
+    <meta property="og:site_name" content="Earthquake Philippines"/>
+    <meta property="og:image" content="/og-image.jpeg"/>
 
     <title>EarthquakePH - @yield('title')</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.gif" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- CSS -->

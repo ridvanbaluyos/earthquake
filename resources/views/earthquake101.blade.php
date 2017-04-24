@@ -51,46 +51,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <h3>Earthquake Magnitude Classes</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Class</th>
-                        <th>Magnitude</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Great</td>
-                    <td>8 or more</td>
-                </tr>
-                <tr>
-                    <td>Major</td>
-                    <td>7 - 7.9</td>
-                </tr>
-                <tr>
-                    <td>Strong</td>
-                    <td>6 - 6.9</td>
-                </tr>
-                <tr>
-                    <td>Moderate</td>
-                    <td>5 - 5.9</td>
-                </tr>
-                <tr>
-                    <td>Light</td>
-                    <td>4 - 4.9</td>
-                </tr>
-                <tr>
-                    <td>Minor</td>
-                    <td>3 -3.9</td>
-                </tr>
-                </tbody>
-            </table>
             <p class="text-right">
                 <small>source: <a href="/www.geo.mtu.edu/UPSeis/magnitude.html">www.geo.mtu.edu/UPSeis/magnitude.html</a></small>
             </p>
