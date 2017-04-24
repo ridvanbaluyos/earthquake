@@ -44,6 +44,9 @@
                     <a href="//semaphore.co/" target="_blank">Semaphore</a> - Semaphore lets you send an SMS with a single line of code. No complicated setup, no dealing with telecom protocols and procedures.
                 </li>
                 <li>
+                    <a href="//http://mailgun.com/" target="_blank">Mailgun</a> - Transactional Email API Service for Developers.
+                </li>
+                <li>
                     <a href="//www.cloudflare.com" target="_blank">Cloudflare</a> - Cloudflare speeds up and protects millions of websites, APIs, SaaS services, and other properties connected to the Internet.
                 </li>
                 <li>

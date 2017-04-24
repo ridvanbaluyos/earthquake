@@ -2,14 +2,20 @@
 @section('title', 'Home')
 @section('content')
 <header class="jumbotron hero-spacer">
-    <h1>A Warm Kitty Welcome!</h1>
+    <h1>Get Notified!</h1>
     <p>
-        Cat ipsum dolor sit amet, howl uncontrollably for no reason. Pee in the shoe spread kitty litter all over house.
-        Lies down sleep on dog bed, force dog to sleep on floor so gnaw the corn cob, asdflkjaertvlkjasntvkjn (sits on
-        keyboard) pushes butt to face curl into a furry donut meow. Run outside as soon as door open.
+        Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs!
     </p>
-    <p><a class="btn btn-primary btn-large">Call to action!</a>
-    </p>
+
+    <div class="input-group" style="width:30%;">
+        <input type="text" class="form-control" placeholder="Enter Email" id="email" />
+        <span class="input-group-btn">
+            <button class="btn btn-success" type="button" onclick="track();">Subscribe!</button>
+        </span>
+    </div>
+    <small><em>* No spam, promise!</em></small><br>
+    <small><em>** Limited slots only as I rely on free service.</em></small><br>
+    <small><em>*** Message me if you want SMS notifications. Available to imited people only.</em></small>
 </header>
 <hr>
 <div class="row">
@@ -52,4 +58,16 @@
     </div>
     @endforeach
 </div>
+@endsection
+
+@section('js-page-specific')
+<script type="text/javascript">
+    function track()
+    {
+        var email = $('#email').val();
+        ga('send', 'event', 'Email', 'input', email);
+        ga('send', 'event', 'Subscribe', 'click', 'Subscribe Button');
+        alert('Thank you for participating on this survey!');
+    }
+</script>
 @endsection
