@@ -14,8 +14,7 @@
         </span>
     </div>
     <small><em>* No spam, promise!</em></small><br>
-    <small><em>** Limited slots only as I rely on free service.</em></small><br>
-    <small><em>*** Message me if you want SMS notifications. Available to imited people only.</em></small>
+    <small><em>** Message me if you want SMS alerts. Limited slots only.</em></small><br>
 </header>
 <hr>
 <div class="row">
