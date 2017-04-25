@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Earthquake Philippines"/>
     <meta property="og:image" content="@yield('og-image', 'https://earthquake.ph/og-image.jpeg') "/>
 
-    <title>EarthquakePH - @yield('title')</title>
+    <title>Earthquake Philippines - @yield('title')</title>
     <link rel="shortcut icon" href="/favicon.gif" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
