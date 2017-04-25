@@ -75,6 +75,13 @@
         var email = $('#email').val();
         ga('send', 'event', 'Email', 'input', email);
         ga('send', 'event', 'Subscribe', 'click', 'Subscribe Button');
+
+        mixpanel.track("Subscribe to Alerts", {
+            'email': email,
+            'ts': new Date().toJSON(),
+            'ts (unix)': new Date().getTime()/1000
+        });
+
         alert('Thank you for participating on this survey!');
     }
 </script>
