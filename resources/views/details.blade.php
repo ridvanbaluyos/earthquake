@@ -1,5 +1,7 @@
 @extends('layouts.default')
 @section('title', $data['earthquake']->properties->title)
+@section('og-url', 'https://earthquake.ph/earthquakes/' . $data['earthquake']->id)
+@section('og-image', "https://maps.googleapis.com/maps/api/staticmap?center=" . $data['earthquake']->geometry->coordinates[1] . "," . $data['earthquake']->geometry->coordinates[0] . "&markers=color:red|" . $data['earthquake']->geometry->coordinates[1] . "," . $data['earthquake']->geometry->coordinates[0] . "&zoom=6&size=800x500&maptype=roadmap&key=" . config('app.google_maps_api_key'))
 @section('content')
     <div class="row">
         <div class="col-lg-12 col-md-12">
