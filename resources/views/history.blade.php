@@ -51,18 +51,13 @@
             <div class="thumbnail">
                 <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ $earthquake->geometry->coordinates[1] }},{{ $earthquake->geometry->coordinates[0] }}&markers=color:red|{{ $earthquake->geometry->coordinates[1] }},{{ $earthquake->geometry->coordinates[0] }}&zoom=6&size=800x500&maptype=roadmap&key={{ config('app.google_maps_api_key') }}" alt="">
                 <div class="caption">
-                    <h3>
-                        @if ($earthquake->properties->mag >= 5)
-                            <span class="label label-danger"><i class="fa fa-flash"></i> {{ $earthquake->properties->mag }}</span>
-                        @elseif ($earthquake->properties->mag < 5 && $earthquake->properties->mag > 4)
-                            <span class="label label-info"><i class="fa fa-flash"></i> {{  $earthquake->properties->mag }}</span>
-                        @endif
-                    </h3>
+                    <h4>
+                        {!! App\Helpers\Charts\ChartHelper::getMagnitudeLabel($earthquake->properties->mag) !!}
+                    </h4>
                     <p>
-                        <small>
+                        <h4>
                             <i class="fa fa-map-marker"></i> {{ $earthquake->properties->place }}
-                        </small>
-                        <br>
+                        </h4>
                         <small>
                             <i class="fa fa-clock-o"></i>
                             {{ \App\Helpers\DateHelper\DateHelper::convertDate($earthquake->properties->time) }}
@@ -73,7 +68,8 @@
                             {{ $earthquake->geometry->coordinates[2] }} km
                         </small>
                         <br>
-                        <a href="/earthquakes/{{ $earthquake->id }}" type="button" class="btn btn-xs btn-link">more info</a>
+                        <br>
+                        <a href="/earthquakes/{{ $earthquake->id }}" type="button" class="btn btn-xs">more info <i class="fa fa-arrow-circle-o-right"></i></a>
                     </p>
                 </div>
             </div>

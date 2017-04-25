@@ -8,7 +8,7 @@ class DateHelper
     {
         // TODO: fix
         // converting to GMT+8
-        $date = date('Y-m-d H:i:s', (intval($date) / 1000) + 8 * 3600); // +8hrs
+        $date = date(DATE_RFC2822, (intval($date) / 1000) + 8 * 3600); // +8hrs
 
         return $date;
     }

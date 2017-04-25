@@ -1,13 +1,23 @@
 @extends('layouts.default')
-@section('title', $data['earthquake']->properties->title)
+@section('title', $data['earthquake']->properties->place)
 @section('og-url', 'https://earthquake.ph/earthquakes/' . $data['earthquake']->id)
 @section('og-image', "https://maps.googleapis.com/maps/api/staticmap?center=" . $data['earthquake']->geometry->coordinates[1] . "," . $data['earthquake']->geometry->coordinates[0] . "&markers=color:red|" . $data['earthquake']->geometry->coordinates[1] . "," . $data['earthquake']->geometry->coordinates[0] . "&zoom=6&size=800x500&maptype=roadmap&key=" . config('app.google_maps_api_key'))
 @section('content')
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <a href="/earthquakes" class="btn btn-default btn"><i class="fa fa-chevron-left fa-3" aria-hidden="true"></i> Back</a>
-            <h3>@yield('title')</h3>
-            <small>{{ $data['earthquake']->geometry->coordinates[1] }}°N,{{ $data['earthquake']->geometry->coordinates[0] }}°E</small>
+            <h3>
+                @yield('title')
+                {!! \App\Helpers\Charts\ChartHelper::getMagnitudeLabel($data['earthquake']->properties->mag) !!}
+                <br/>
+                <small>
+                    <i class="fa fa-clock-o fa-3" aria-hidden="true"></i>
+                    {{ \App\Helpers\DateHelper\DateHelper::convertDate($data['earthquake']->properties->time) }}
+                    <br>
+                    <i class="fa fa-map-marker fa-3" aria-hidden="true"></i>
+                    {{ $data['earthquake']->geometry->coordinates[1] }}°N,{{ $data['earthquake']->geometry->coordinates[0] }}°E
+                </small>
+            </h3>
         </div>
     </div>
 

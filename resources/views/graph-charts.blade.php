@@ -36,7 +36,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <p class="text-right">
+            <p class="text-left">
                 <small>Note: querying 5 years and up might cause lag in the heat and circle maps.</small>
             </p>
         </div>
@@ -182,22 +182,51 @@
         generateCircleMap(earthquakeData);
     }
 
-
     function generateCircleMap(results)
     {
         map = new google.maps.Map(document.getElementById('circlemap_canvas'), {
             zoom: 5,
             center: {lat: 12.501920, lng: 122.279620}, // philippines
-            mapTypeId: 'terrain'
+            mapTypeId: 'terrain',
+            streetViewControl: false,
+            mapTypeControl: false,
+            rotateControl: false,
+            styles: invertStyles
         });
 
         map.data.setStyle(function(feature) {
             var magnitude = feature.getProperty('mag');
+
+            if (magnitude < 2.0) {
+                // not felt - blue
+                color = "#0000ff";
+            } else if (magnitude > 2.0 && magnitude <= 4.0) {
+                // minor - blue green
+                color = "#0d98ba";
+            } else if (magnitude > 4.0 && magnitude <= 5.0) {
+                // small - green
+                color = "#00ff00";
+            } else if (magnitude > 5.0 && magnitude <= 6.0) {
+                // moderate - orange
+                color = "#ffa500";
+            } else if (magnitude > 6.0 && magnitude <= 7.0) {
+                // strong
+                color = "#ff69b4";
+            } else if (magnitude > 7.0 && magnitude <= 8.0) {
+                // major
+                color = "#ff1493";
+            } else if (magnitude > 8.0) {
+                // great
+                color = "#ff0000";
+            } else {
+                color = '';
+            }
+
             return {
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: 'red',
-                    fillOpacity: .2,
+                    fillColor: color,
+                    fillOpacity: .5,
                     scale: Math.pow(2, magnitude) / 4,
                     strokeColor: 'white',
                     strokeWeight: .1
@@ -213,7 +242,11 @@
         map = new google.maps.Map(document.getElementById('heatmap_canvas'), {
             zoom: 5,
             center: {lat: 12.501920, lng: 122.279620}, // philippines
-            mapTypeId: 'terrain'
+            mapTypeId: 'terrain',
+            streetViewControl: false,
+            mapTypeControl: false,
+            rotateControl: false,
+            styles: invertStyles
         });
 
         var heatmapData = [];
@@ -229,5 +262,86 @@
         });
         heatmap.set('radius', 0.2);
     }
+
+    var invertStyles = [
+        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+        {
+            featureType: 'administrative.locality',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+        },
+        {
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+        },
+        {
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [{color: '#263c3f'}]
+        },
+        {
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#6b9a76'}]
+        },
+        {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{color: '#38414e'}]
+        },
+        {
+            featureType: 'road',
+            elementType: 'geometry.stroke',
+            stylers: [{color: '#212a37'}]
+        },
+        {
+            featureType: 'road',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#9ca5b3'}]
+        },
+        {
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [{color: '#746855'}]
+        },
+        {
+            featureType: 'road.highway',
+            elementType: 'geometry.stroke',
+            stylers: [{color: '#1f2835'}]
+        },
+        {
+            featureType: 'road.highway',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#f3d19c'}]
+        },
+        {
+            featureType: 'transit',
+            elementType: 'geometry',
+            stylers: [{color: '#2f3948'}]
+        },
+        {
+            featureType: 'transit.station',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+        },
+        {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{color: '#17263c'}]
+        },
+        {
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#515c6d'}]
+        },
+        {
+            featureType: 'water',
+            elementType: 'labels.text.stroke',
+            stylers: [{color: '#17263c'}]
+        }
+    ];
 </script>
 @endsection
