@@ -51,11 +51,12 @@
                     </small>
                     <br>
                     <small>
-                        <i class="fa fa-calendar"></i>
+                        <i class="fa fa-clock-o"></i>
                         {{ \App\Helpers\DateHelper\DateHelper::convertDate($earthquake->properties->time) }}
                     </small>
                     <br>
                     <small>
+                        <i class="fa fa-arrows-v"></i>
                         {{ $earthquake->geometry->coordinates[2] }} km
                     </small>
                     <br>

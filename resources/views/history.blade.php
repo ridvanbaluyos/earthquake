@@ -69,6 +69,7 @@
                         </small>
                         <br>
                         <small>
+                            <i class="fa fa-arrows-v"></i>
                             {{ $earthquake->geometry->coordinates[2] }} km
                         </small>
                         <br>
