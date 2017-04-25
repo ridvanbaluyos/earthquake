@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@earthquake.gundamserver.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@earthquake.ph'),
         'name' => env('MAIL_FROM_NAME', 'Earthquake Philippines'),
     ],
 

@@ -17,9 +17,28 @@ use Carbon\Carbon;
 class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
 {
     private $url;
+    private $coordinates;
 
-    public function __construct() {
+    /**
+     * EarthquakeUsgsRepository constructor.
+     *
+     * Set coordinates to Philippines if none is provided.
+     *
+     * @param array $coordinates
+     */
+    public function __construct(Array $coordinates = []) {
         $this->url = 'https://earthquake.usgs.gov/fdsnws/event/1/';
+
+        if (empty($coordinates)) {
+            $coordinates['minlatitude'] = config('app.minlatitude');
+            $coordinates['maxlatitude'] = config('app.maxlatitude');
+            $coordinates['minlongitude'] = config('app.minlongitude');
+            $coordinates['maxlongitude'] = config('app.maxlongitude');
+
+            $this->coordinates = $coordinates;
+        } else {
+            $this->coordinates = $coordinates;
+        }
 
     }
 
@@ -33,10 +52,7 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
     public function getEarthquakes($params = [])
     {
         $params['format'] = 'geojson';
-        $params['minlatitude'] = config('app.minlatitude');
-        $params['maxlatitude'] = config('app.maxlatitude');
-        $params['minlongitude'] = config('app.minlongitude');
-        $params['maxlongitude'] = config('app.maxlongitude');
+        $params = array_merge($params, $this->coordinates);
 
         $serializedKey = md5(serialize($params));
         $this->url = $url = $this->url . 'query?' . http_build_query($params);
