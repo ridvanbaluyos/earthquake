@@ -53,7 +53,7 @@
                     <a href="//newrelic.com" target="_blank">New Relic</a> - Digital Performance Monitoring and Management.
                 </li>
                 <li>
-                    <a href="//mixpanel.com" target="_blank">Mixpanel</a> - Product analytics for mobile, web, nad beyond.
+                    <a href="//mixpanel.com" target="_blank">Mixpanel</a> - Product analytics for mobile, web, and beyond.
                 </li>
             </ul>
             <hr>
