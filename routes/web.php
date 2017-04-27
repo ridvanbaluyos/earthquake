@@ -29,3 +29,5 @@ Route::get('/earthquake-101', 'HomeController@getEarthquake101');
 Route::get('/earthquake-hotlines', 'HomeController@getHotlines');
 
 Route::get('/about', 'HomeController@getAbout');
+
+Route::get('/test', 'HomeController@getTest');

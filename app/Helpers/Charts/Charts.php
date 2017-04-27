@@ -14,15 +14,22 @@ class ChartHelper
             case 'days':
                 $dateFormat = 'd M Y';
                 break;
-            case 'months':
-                $dateFormat = 'M Y';
+            case 'month':
+                $dateFormat = 'M';
                 break;
-            case 'years':
+            case 'year':
                 $dateFormat = 'Y';
+                break;
+            case 'weekday':
+                $dateFormat = 'l';
+                break;
+            case 'hour':
+                $dateFormat = 'gA';
                 break;
             default:
                 $dateFormat = 'M Y';
         }
+
         foreach ($data->features as $earthquake) {
             $date = date($dateFormat, intval($earthquake->properties->time)/1000);
             if (!isset($earthquakes[$date])) {
@@ -42,7 +49,12 @@ class ChartHelper
             }
         }
 
-        $earthquakes = array_reverse($earthquakes, true);
+        if ($filter == 'hour') {
+            ksort($earthquakes, true);
+        } else {
+            $earthquakes = array_reverse($earthquakes, true);
+        }
+
         $dateLabels = '[\'' . implode('\',\'', array_keys($earthquakes)) . '\']';
 
         foreach ($earthquakes as $earthquake) {
@@ -70,43 +82,60 @@ class ChartHelper
         return $areaChart;
     }
 
-    public static function getMagnitudeLabel($magnitude)
+    public static function getMagnitudeLabel($value, $scale = 'richter')
     {
-        if ($magnitude < 2.0) {
-            // not felt - blue
-            $color = "#0000ff";
-            $label = "Not Felt";
-        } elseif ($magnitude > 2.0 && $magnitude <= 4.0) {
-            // minor - blue green
-            $color = "#0d98ba";
-            $label = "Minor";
-        } elseif ($magnitude > 4.0 && $magnitude <= 5.0) {
-            // small - green
-            $color = "#00ff00";
-            $label = "Small";
-        } elseif ($magnitude > 5.0 && $magnitude <= 6.0) {
-            // moderate - orange
-            $color = "#ffa500";
-            $label = "Moderate";
-        } elseif ($magnitude > 6.0 && $magnitude <= 7.0) {
-            // strong
-            $color = "#ff69b4";
-            $label = "Strong";
-        } elseif ($magnitude > 7.0 && $magnitude <= 8.0) {
-            // major
-            $color = "#ff1493";
-            $label = "Major";
-        } elseif ($magnitude > 8.0) {
-            // great
-            $color = "#ff0000";
-            $label = "Great";
-        } else {
-            $color = '';
-            $label = 'Unknown';
-        }
-
-        $html = "<span class=\"label\" style=\"background: {$color}\"><i class=\"fa fa-flash\"></i> {$magnitude} {$label}</span>";
+        $properties = self::getMagnitudeLabelProperties($value, $scale);
+        $html = '<span class="label" style="background: ' . $properties['color'] . '">' . $properties['label'] . '</span>';
 
         return $html;
+    }
+
+    public static function getMagnitudeLabelProperties($value = 0, $scale = 'richter')
+    {
+        $properties = [];
+        switch ($scale) {
+            case 'richter':
+                $properties = self::getRichterScaleProperties($value);
+                break;
+            case 'mercalli':
+                $properties = self::getMercalliScaleProperties($value);
+                break;
+            default:
+                break;
+        }
+
+        return $properties;
+    }
+
+    public static function getRichterScaleProperties($value)
+    {
+        $scaleReference = config('references.intensity_labels.richter');
+
+        foreach ($scaleReference as $scale=>$properties) {
+            list($min, $max) = explode(',', $scale);
+
+            if ($value >= $min && $value <= $max) {
+                return $properties;
+            }
+
+        }
+
+        return ['color' => '#000000', 'label' => 'Unknown'];
+    }
+
+    public static function getMercalliScaleProperties($value)
+    {
+        $scaleReference = config('references.intensity_labels.richter');
+
+        foreach ($scaleReference as $scale=>$properties) {
+            list($min, $max) = explode(',', $scale);
+
+            if ($value >= $min && $value <= $max) {
+                return $properties;
+            }
+
+        }
+
+        return ['color' => '#000000', 'label' => 'Unknown'];
     }
 }

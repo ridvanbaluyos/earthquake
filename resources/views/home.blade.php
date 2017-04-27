@@ -25,7 +25,39 @@
         </header>
     </div>
 </div>
-<hr>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-danger">
+            <strong>Biggest Earthquake Today: </strong>
+            @if (empty($data['biggest_earthquake_today']))
+                No earthquakes today!
+            @else
+                <a href="/earthquakes/{{ $data['biggest_earthquake_today']->features[0]->id }}">
+                    {{ $data['biggest_earthquake_today']->features[0]->properties->title }}
+                </a>
+            @endif
+        </div>
+    </div>
+</div>
+{{--<hr>--}}
+{{--<div class="row">--}}
+    {{--<div class="col-lg-6">--}}
+        {{--<div class="panel panel-success">--}}
+            {{--<div class="panel-heading">Philippine Earthquake Stats</div>--}}
+            {{--<div class="panel-body">--}}
+                {{--Panel content--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-lg-6">--}}
+        {{--<div class="panel panel-info">--}}
+            {{--<div class="panel-heading">Global Earthquake Stats</div>--}}
+            {{--<div class="panel-body">--}}
+                {{--Panel content--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
 <div class="row">
     <div class="col-lg-12">
         <h3>Recent Earthquakes in the Philippines</h3>

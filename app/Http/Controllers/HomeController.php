@@ -27,9 +27,33 @@ class HomeController extends BaseController
         ];
 
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->getEarthquakes($params);
+        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
+
+        unset($usgs);
+
+        $coordinates = [
+            'minlatitude' => '-90',
+            'maxlatitude' => '90',
+            'minlongitude' => '-180',
+            'maxlongitude' => '180',
+        ];
+        $params = [
+            'minmagnitude' => 0,
+            'maxmagnitude' => 11,
+            'starttime' => date('Y-m-d', strtotime('-1 days')),
+            'orderby' => 'magnitude',
+            'limit' => '5',
+
+        ];
+        $usgs = new EarthquakeRepository();
+        $biggestEarthquakeToday = $usgs->setCoordinates($coordinates)->setParameters($params)->getEarthquakes();
+
+        unset($params['orderby']);
+        $latestEarthquakesToday = $usgs->setParameters($params)->getEarthquakes($params);
 
         $data['earthquakes'] = $earthquakes;
+        $data['biggest_earthquake_today'] = $biggestEarthquakeToday;
+        $data['latest-earthquake_today'] = $latestEarthquakesToday;
 
         return response()
             ->view('home', ['data' => $data]);
@@ -42,24 +66,28 @@ class HomeController extends BaseController
         $period = 30;
 
         $period = $request->input('period', $period);
-        $chart = $request->input('chart', 'bar');
+        $graphType = $request->input('type', 'line');
         $filter = $request->input('filter', 'days');
 
         $params = [
-            'minmagnitude' => 0,
-            'maxmagnitude' => 10,
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
         ];
 
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->getEarthquakes($params);
-        $areaChart = ChartHelper::formatStackedAreaChart($earthquakes, $filter);
+        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
+
+        $areaChart['graph'] = ChartHelper::formatStackedAreaChart($earthquakes, $filter);
+        $areaChart['month'] = ChartHelper::formatStackedAreaChart($earthquakes, 'month');
+        $areaChart['weekday'] = ChartHelper::formatStackedAreaChart($earthquakes, 'weekday');
+        $areaChart['hour'] = ChartHelper::formatStackedAreaChart($earthquakes, 'hour');
+
         $url = $usgs->getSourceUrl();
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
         $data['params']['period'] = $period;
         $data['params']['filter'] = $filter;
+        $data['params']['type'] = $graphType;
         $data['area_chart'] = $areaChart;
         $data['url'] = $url;
 
@@ -80,7 +108,7 @@ class HomeController extends BaseController
         ];
 
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->getEarthquakes($params);
+        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
 
         $params = [
             'minmagnitude' => 0,
@@ -116,7 +144,7 @@ class HomeController extends BaseController
 
         ];
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->getEarthquakes($params);
+        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
 
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
@@ -165,18 +193,14 @@ class HomeController extends BaseController
             ->view('about', ['data' => $data]);
     }
 
-    private function getFilterBasedFromDays($period)
+    public function getTest()
     {
-        $filter = 'days';
-
-        if ($period <= 30) {
-            $filter = 'days';
-        } else if ($period > 30 && $period <= 1800) {
-            $filter = 'months';
-        } else if ($period > 1800) {
-            $filter = 'years';
+        for($x = 1; $x <= 2; $x++){
+            for($y = 1; $y <= 3; $y++){
+                if ($x == $y) continue;
+                print("x = $x  y =  $y");
+            }
         }
-
-        return $filter;
     }
+
 }

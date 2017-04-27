@@ -56,7 +56,7 @@
                     </h4>
                     <p>
                         <h4>
-                            <i class="fa fa-map-marker"></i> {{ $earthquake->properties->place }}
+                            <i class="fa fa-map-marker"></i> {{ $earthquake->properties->title }}
                         </h4>
                         <small>
                             <i class="fa fa-clock-o"></i>

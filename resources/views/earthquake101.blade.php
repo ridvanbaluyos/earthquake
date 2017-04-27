@@ -42,7 +42,7 @@
     <hr>
     <div class="row">
         <div class="col-lg-12">
-            <h3>Earthquake Magnitude Squale <small><sup><a href="https://en.wikipedia.org/wiki/Richter_magnitude_scale">[2]</a></sup></small></h3>
+            <h3>Earthquake Magnitude Squale (Richter Scale)<small><sup><a href="https://en.wikipedia.org/wiki/Richter_magnitude_scale">[2]</a></sup></small></h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -53,71 +53,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Less than 2.0</td>
-                        <td>Micro</td>
-                        <td>Normally only recorded by seismographs. Most people cannot feel them.</td>
-                        <td>Millions per year.</td>
-                    </tr>
-                    <tr>
-                        <td>2.0 ~ 2.9</td>
-                        <td>Minor</td>
-                        <td>A few people feel them. No building damage.</td>
-                        <td>Over 1 million per year.</td>
-                    </tr>
-                    <tr>
-                        <td>3.0 ~ 3.9</td>
-                        <td>Minor</td>
-                        <td>Some people feel them. Objects inside can be seen shaking.</td>
-                        <td>Over 100,000 per year.</td>
-                    </tr>
-                    <tr>
-                        <td>4.9 ~ 5.0</td>
-                        <td>Light</td>
-                        <td>Most people feel it. Indoor objects shake or fall to floor.</td>
-                        <td>10,000 to 15,000 per year.</td>
-                    </tr>
-                    <tr>
-                        <td>5.9 ~ 5.9</td>
-                        <td>Moderate</td>
-                        <td>Can damage or destroy buildings not designed to withstand earthquakes. Everyone feels it.</td>
-                        <td>1,000 to 1,500 per year.</td>
-                    </tr>
-                    <tr>
-                        <td>6.0 ~ 6.9</td>
-                        <td>Strong</td>
-                        <td>Wide spread shaking far from epicenter. Damages building.</td>
-                        <td>100 to 150 per year.</td>
-                    </tr>
-                    <tr>
-                        <td>7.0 ~ 7.9</td>
-                        <td>Major</td>
-                        <td>Wide spread damage in most areas.</td>
-                        <td>10 to 20 per year.</td>
-                    </tr>
-                    <tr>
-                        <td>8.0 ~ 8.9</td>
-                        <td>Great</td>
-                        <td>Wide spread damage in large areas.</td>
-                        <td>About 1 per year.</td>
-                    </tr>
-                    <tr>
-                        <td>9.0 ~ 9.9</td>
-                        <td>Great</td>
-                        <td>Severe damage to most buildings.</td>
-                        <td>About 1 per 5~50 years.</td>
-                    </tr>
-                    <tr>
-                        <td>10.0 or over</td>
-                        <td>Massive</td>
-                        <td>Never recorded.</td>
-                        <td>Never recorded.</td>
-                    </tr>
+                    @foreach (config('references.intensity_labels.richter') as $range=>$properties)
+                        <tr>
+                            <td>{{ str_replace(',', ' ~ ', $range) }}</td>
+                            <td>
+                                {!! App\Helpers\Charts\ChartHelper::getMagnitudeLabel(explode(',', $range)[0]) !!}
+                            </td>
+                            <td>{{ $properties['description'] }}</td>
+                            <td>{{ $properties['count_description'] }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <p class="text-right">
-                <small>sources: <a href="//www.geo.mtu.edu/UPSeis/magnitude.html" target="_blank">www.geo.mtu.edu/UPSeis/magnitude.html</a></small>
-            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Earthquake Magnitude Squale (Modified Mercalli Intensity Scale)<small><sup><a href="https://en.wikipedia.org/wiki/Mercalli_intensity_scale">[3]</a></sup></small></h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Intensity</th>
+                    <th>Description</th>
+                    <th>What it feels like</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (config('references.intensity_labels.mercalli') as $range=>$properties)
+                    <tr>
+                        <td>{{ $properties['roman_numeral'] }}</td>
+                        <td>{!! App\Helpers\Charts\ChartHelper::getMagnitudeLabel(explode(',', $range)[0], 'mercalli') !!}</td>
+                        <td>{{ $properties['description'] }}</td>
+                    </tr>
+                @endforeach
+            </table>
         </div>
     </div>
 @endsection

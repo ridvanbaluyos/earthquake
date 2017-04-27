@@ -193,5 +193,143 @@ return [
         'Manila Water' => [
             'Hotline' => ['1627']
         ]
+    ],
+    'intensity_labels' => [
+        'richter' => [
+            '0,1.9' => [
+                'label' => 'Micro',
+                'color' => '#0000ff',
+                'description' => 'Normally only recorded by seismographs. Most people cannot feel them.',
+                'count_description' => '	Millions per year.'
+            ],
+            '2.0,2.9' => [
+                'label' => 'Minor',
+                'color' => '#0d98ba',
+                'description' => 'A few people feel them. No building damage.',
+                'count_description' => 'Over 1 million per year.'
+            ],
+            '3.0,3.9' => [
+                'label' => 'Minor',
+                'color' => '#0d98ba',
+                'description' => 'Some people feel them. Objects inside can be seen shaking.',
+                'count_description' => 'Over 100,000 per year.'
+            ],
+            '4.0,4.9' => [
+                'label' => 'Small',
+                'color' => '#00ff00',
+                'description' => 'Most people feel it. Indoor objects shake or fall to floor.',
+                'count_description' => '10,000 to 15,000 per year.'
+            ],
+            '5.0,5.9' => [
+                'label' => 'Moderate',
+                'color' => '#ffa500',
+                'description' => 'Can damage or destroy buildings not designed to withstand earthquakes. Everyone feels it.',
+                'count_description' => '1,000 to 1,500 per year.'
+            ],
+            '6.0,6.9' => [
+                'label' => 'Strong',
+                'color' => '#ff69b4',
+                'description' => 'Wide spread shaking far from epicenter. Damages building.',
+                'count_description' => '100 to 150 per year.'
+            ],
+            '7.0,7.9' => [
+                'label' => 'Major',
+                'color' => '#ff1493',
+                'description' => 'Wide spread damage in most areas.',
+                'count_description' => '10 to 20 per year.'
+            ],
+            '8.0,8.9' => [
+                'label' => 'Great',
+                'color' => '#ff0000',
+                'description' => 'Wide spread damage in large areas.',
+                'count_description' => 'About 1 per year.'
+            ],
+            '9.0,9.9' => [
+                'label' => 'Great',
+                'color' => '#ff0000',
+                'description' => 'Severe damage to most buildings.',
+                'count_description' => 'About 1 per 5~50 years.'
+            ],
+            '10.0,99.00' => [
+                'label' => 'Great',
+                'color' => '#ff0000',
+                'description' => 'Never recorded.',
+                'count_description' => 'Never recorded.'
+            ]
+        ],
+        'mercalli' => [
+            '0,1' => [
+                'roman_numeral' => 'I',
+                'label' => 'Not Felt',
+                'color' => '#dfdfdf',
+                'description' => 'Not felt except by very few under especially favorable conditions.'
+            ],
+            '1,2' => [
+                'roman_numeral' => 'II',
+                'label' => 'Weak',
+                'color' => '#bfccff',
+                'description' => 'Felt only by a few people at rest, especially on upper floors of buildings.'
+            ],
+            '2,3' => [
+                'roman_numeral' => 'III',
+                'label' => 'Weak',
+                'color' => '#99f',
+                'description' => 'Felt quite noticeably by people indoors, especially on upper floors of buildings. Many people do not recognize it as an earthquake. Standing motor cars may rock slightly. Vibrations similar to the passing of a truck. Duration estimated.'
+            ],
+            '3,4' => [
+                'roman_numeral' => 'IV',
+                'label' => 'Light',
+                'color' => '#8ff',
+                'description' => 'Felt indoors by many, outdoors by few during the day. At night, some awakened. Dishes, windows, doors disturbed; walls make cracking sound. Sensation like heavy truck striking building. Standing motor cars rocked noticeably.'
+            ],
+            '4,5' => [
+                'roman_numeral' => 'V',
+                'label' => 'Moderate',
+                'color' => '#7df894',
+                'description' => 'Felt by nearly everyone; many awakened. Some dishes, windows broken. Unstable objects overturned. Pendulum clocks may stop.'
+            ],
+            '5,6' => [
+                'roman_numeral' => 'VI',
+                'label' => 'Strong',
+                'color' => '#ff0',
+                'description' => 'Felt by nearly everyone; many awakened. Some dishes, windows broken. Unstable objects overturned. Pendulum clocks may stop.'
+            ],
+            '6,7' => [
+                'roman_numeral' => 'VII',
+                'label' => 'Very Strong',
+                'color' => '#fd0',
+                'description' => 'Damage negligible in buildings of good design and construction; slight to moderate in well-built ordinary structures; considerable damage in poorly built or badly designed structures; some chimneys broken.'
+            ],
+            '7,8' => [
+                'roman_numeral' => 'VIII',
+                'label' => 'Severe',
+                'color' => '#ff9100',
+                'description' => 'Damage slight in specially designed structures; considerable damage in ordinary substantial buildings with partial collapse. Damage great in poorly built structures. Fall of chimneys, factory stacks, columns, monuments, walls. Heavy furniture overturned.'
+            ],
+            '8,9' => [
+                'roman_numeral' => 'IX',
+                'label' => 'Violent',
+                'color' => '#f00',
+                'description' => 'Damage considerable in specially designed structures; well-designed frame structures thrown out of plumb. Damage great in substantial buildings, with partial collapse. Buildings shifted off foundations. Liquefaction.'
+            ],
+            '9,10' => [
+                'roman_numeral' => 'X',
+                'label' => 'Extreme',
+                'color' => '#d00',
+                'description' => 'Some well-built wooden structures destroyed; most masonry and frame structures destroyed with foundations. Rails bent.'
+            ],
+            '10,11' => [
+                'roman_numeral' => 'XI',
+                'label' => 'Extreme',
+                'color' => '#800',
+                'description' => 'Few, if any, (masonry) structures remain standing. Bridges destroyed. Broad fissures in ground. Underground pipe lines completely out of service. Earth slumps and land slips in soft ground. Rails bent greatly.'
+            ],
+            '11,12' => [
+                'roman_numeral' => 'XII',
+                'label' => 'Extreme',
+                'color' => '#ff0000',
+                'description' => 'Damage total. Waves seen on ground surfaces. Lines of sight and level distorted. Objects thrown upward into the air.'
+            ]
+        ]
     ]
 ];

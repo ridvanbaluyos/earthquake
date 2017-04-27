@@ -21,8 +21,17 @@
             <div class="col-lg-3 col-sm-1">
                 <div class="form-group">
                     <select class="form-control" name="filter">
-                        @foreach (['days', 'months', 'years'] as $v)
-                            <option value="{{ $v }}" @if ($data['params']['filter'] == $v) selected="selected"@endif>{{ ucfirst($v) }}</option>
+                        @foreach (['Days' =>'days', 'Months' => 'months', 'Years' => 'years'] as $k=>$v)
+                            <option value="{{ $v }}" @if ($data['params']['filter'] == $v) selected="selected"@endif>{{ ucfirst($k) }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-1">
+                <div class="form-group">
+                    <select class="form-control" name="type">
+                        @foreach (['Line Chart' =>'line', 'Bar Graph' => 'bar'] as $k=>$v)
+                            <option value="{{ $v }}" @if ($data['params']['filter'] == $v) selected="selected"@endif>{{ ucfirst($k) }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -42,39 +51,67 @@
         </div>
     </div>
     <div class ="row">
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquake Count</h3>
+                    <h3 class="panel-title"><i class="fa fa-line-chart"></i> Earthquake Count</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12 col-sm-1">
-                            <canvas id="earthquake_count_bar_chart"></canvas>
+                            <canvas id="earthquake_count_graph"></canvas>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-line-chart"></i> Earthquake Count</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-1">
-                        <canvas id="earthquake_count_line_chart"></canvas>
-                    </div>
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Month</h3>
                 </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-1">
+                            <canvas id="earthquake_count_by_month"></canvas>
+                        </div>
+                    </div>
 
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Weekday</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-1">
+                            <canvas id="earthquake_count_by_weekday"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Hour</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-1">
+                            <canvas id="earthquake_count_by_hour"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-thermometer-half"></i> Heatmap</h3>
@@ -88,7 +125,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-genderless"></i> Circlemap</h3>
@@ -109,18 +146,18 @@
 @section('js-page-specific')
 <script>
     //Charts
-    var barChartX = document.getElementById('earthquake_count_bar_chart').getContext('2d');
-    var earthquakeCountBarChart = new Chart(barChartX, {
-        type: 'bar',
+    var graphX = document.getElementById('earthquake_count_graph').getContext('2d');
+    var graph = new Chart(graphX, {
+        type: '{!! $data['params']['type'] !!}',
         data: {
-            labels: {!!   $data['area_chart']['labels'] !!},
+            labels: {!!   $data['area_chart']['graph']['labels'] !!},
             datasets: [{
                 label: '< 5.0mb',
-                data: {!!   $data['area_chart']['belowLabels'] !!},
+                data: {!!   $data['area_chart']['graph']['belowLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
                 label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['aboveLabels'] !!},
+                data: {!!   $data['area_chart']['graph']['aboveLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
@@ -134,18 +171,68 @@
         }
     });
 
-    var lineChartX = document.getElementById('earthquake_count_line_chart').getContext('2d');
-    var earthquakeCountLineChart = new Chart(lineChartX, {
-        type: 'line',
+    var byMonthX = document.getElementById('earthquake_count_by_month').getContext('2d');
+    var byMonth = new Chart(byMonthX, {
+        type: '{!! $data['params']['type'] !!}',
         data: {
-            labels: {!!   $data['area_chart']['labels'] !!},
+            labels: {!!   $data['area_chart']['month']['labels'] !!},
             datasets: [{
                 label: '< 5.0mb',
-                data: {!!   $data['area_chart']['belowLabels'] !!},
+                data: {!!   $data['area_chart']['month']['belowLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
                 label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['aboveLabels'] !!},
+                data: {!!   $data['area_chart']['month']['aboveLabels'] !!},
+                backgroundColor: "#ff0000"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+            fullWidth: true
+        }
+    });
+
+    var byWeekdayX = document.getElementById('earthquake_count_by_weekday').getContext('2d');
+    var byWeekday = new Chart(byWeekdayX, {
+        type: '{!! $data['params']['type'] !!}',
+        data: {
+            labels: {!!   $data['area_chart']['weekday']['labels'] !!},
+            datasets: [{
+                label: '< 5.0mb',
+                data: {!!   $data['area_chart']['weekday']['belowLabels'] !!},
+                backgroundColor: "#00ff00"
+            }, {
+                label: '>= 5.0mb',
+                data: {!!   $data['area_chart']['weekday']['aboveLabels'] !!},
+                backgroundColor: "#ff0000"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+            fullWidth: true
+        }
+    });
+
+    var byHourX = document.getElementById('earthquake_count_by_hour').getContext('2d');
+    var byHour = new Chart(byHourX, {
+        type: '{!! $data['params']['type'] !!}',
+        data: {
+            labels: {!!   $data['area_chart']['hour']['labels'] !!},
+            datasets: [{
+                label: '< 5.0mb',
+                data: {!!   $data['area_chart']['hour']['belowLabels'] !!},
+                backgroundColor: "#00ff00"
+            }, {
+                label: '>= 5.0mb',
+                data: {!!   $data['area_chart']['hour']['aboveLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
