@@ -73,6 +73,12 @@ class HomeController extends BaseController
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
         ];
 
+        if ($period > 7200) {
+            $params['minmagnitude'] = '4';
+            $filter = 'years';
+        }
+
+        ini_set('memory_limit', '1024M');
         $usgs = new EarthquakeRepository();
         $earthquakes = $usgs->setParameters($params)->getEarthquakes();
 

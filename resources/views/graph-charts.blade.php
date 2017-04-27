@@ -12,7 +12,7 @@
             <div class="col-lg-3 col-sm-1">
                 <div class="form-group">
                     <select class="form-control" name="period">
-                        @foreach ([7,30,90,180,360,1080,1800,3600,7200] as $v)
+                        @foreach ([7,30,90,180,360,1080,1800,3600,7200,14400] as $v)
                             <option value="{{ $v }}" @if ($data['params']['period'] == $v) selected="selected"@endif>Last @if ($v <= 30) {{ $v . " days" }} @elseif ($v > 30 && $v <=360)  {{ $v/30 . " months" }} @else  {{ $v/360 . " years" }} @endif</option>
                         @endforeach
                     </select>
@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-lg-12">
             <p class="text-left">
-                <small>Note: querying 5 years and up might cause lag in the heat and circle maps.</small>
+                <small>Note: querying 10 years will automatically be filtered to Magnitude 4 and up only.</small>
             </p>
         </div>
     </div>
