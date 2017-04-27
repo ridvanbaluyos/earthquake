@@ -54,7 +54,7 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
         $params['format'] = 'geojson';
         $params = array_merge($params, $this->coordinates);
 
-        $serializedKey = md5(serialize($params));
+        $serializedKey = md5(serialize($params) . date('Y-m-d'));
         $this->url = $url = $this->url . 'query?' . http_build_query($params);
 
         if (Cache::get($serializedKey)) {
@@ -69,7 +69,7 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
             $earthquakes = json_decode($result);
 
             // Cache for 1 day
-            $expiresAt = Carbon::now()->addDays(1);
+        	$expiresAt = Carbon::now()->addDays(1);
             Cache::put($serializedKey, $earthquakes, $expiresAt);
 
             return $earthquakes;
@@ -88,7 +88,7 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
         $params['eventid'] = $id;
         $params['format'] = 'geojson';
 
-        $serializedKey = md5(serialize($params));
+        $serializedKey = md5(serialize($params) . date('Y-m-d'));
         $this->url = $url = $this->url . 'query?' . http_build_query($params);
 
         if (Cache::get($serializedKey)) {
