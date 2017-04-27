@@ -303,7 +303,7 @@
                                 @foreach($data['earthquakes']->features as $earthquake)
                                 <tr>
                                     <td class="content-block">
-                                        <a href="{{ $earthquake->properties->url }}" target="_blank">{{ $earthquake->properties->title }}</a> <br/>
+                                        <a href="{{ config('app.url') }}/{{ $earthquake->id }}" target="_blank">{{ $earthquake->properties->title }}</a> <br/>
                                         <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ $earthquake->geometry->coordinates[1] }},{{ $earthquake->geometry->coordinates[0] }}&markers=color:red|{{ $earthquake->geometry->coordinates[1] }},{{ $earthquake->geometry->coordinates[0] }}&zoom=6&size=200x200&maptype=roadmap&key={{ config('app.google_maps_api_key') }}" alt="">
                                     </td>
                                 </tr>
@@ -315,7 +315,7 @@
                 <div class="footer">
                     <table width="100%">
                         <tr>
-                            <td class="aligncenter content-block"><a href="http://www.mailgun.com">Unsubscribe</a> from these alerts.</td>
+                            <td class="aligncenter content-block"><a href="{{  config('app.url') }}/newsletter/unsubscribe">Unsubscribe</a> from these alerts.</td>
                         </tr>
                     </table>
                 </div>
