@@ -19,6 +19,9 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
     private $url;
     private $coordinates;
 
+    // parameters provided (see https://earthquake.usgs.gov/fdsnws/event/1/#parameters)
+    private $params;
+
     /**
      * EarthquakeUsgsRepository constructor.
      *
@@ -46,13 +49,13 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
      * This function queries the Digital Siesmograph Networks based from the parameters
      * provided.
      *
-     * @param $params - parameters provided (see https://earthquake.usgs.gov/fdsnws/event/1/#parameters)
      * @return mixed $result - json format of earthquake information results
      */
-    public function getEarthquakes($params = [])
+    public function getEarthquakes()
     {
-        $params['format'] = 'geojson';
-        $params = array_merge($params, $this->coordinates);
+        $this->params['format'] = 'geojson';
+
+        $params = array_merge($this->params, $this->coordinates);
 
         $serializedKey = md5(serialize($params) . date('Y-m-d'));
         $this->url = $url = $this->url . 'query?' . http_build_query($params);
@@ -74,6 +77,20 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
 
             return $earthquakes;
         }
+    }
+
+    public function setCoordinates($coordinates)
+    {
+        $this->coordinates = $coordinates;
+
+        return $this;
+    }
+
+    public function setParameters($params)
+    {
+        $this->params = $params;
+
+        return $this;
     }
 
     /**
