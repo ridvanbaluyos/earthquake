@@ -29,20 +29,16 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
      *
      * @param array $coordinates
      */
-    public function __construct(Array $coordinates = []) {
+    public function __construct() {
         $this->url = 'https://earthquake.usgs.gov/fdsnws/event/1/';
 
-        if (empty($coordinates)) {
-            $coordinates['minlatitude'] = config('app.minlatitude');
-            $coordinates['maxlatitude'] = config('app.maxlatitude');
-            $coordinates['minlongitude'] = config('app.minlongitude');
-            $coordinates['maxlongitude'] = config('app.maxlongitude');
+        // Default to Philippines
+        $coordinates['minlatitude'] = config('app.minlatitude');
+        $coordinates['maxlatitude'] = config('app.maxlatitude');
+        $coordinates['minlongitude'] = config('app.minlongitude');
+        $coordinates['maxlongitude'] = config('app.maxlongitude');
 
-            $this->coordinates = $coordinates;
-        } else {
-            $this->coordinates = $coordinates;
-        }
-
+        $this->coordinates = $coordinates;
     }
 
     /**

@@ -58,8 +58,15 @@ class CheckEarthquakes extends Command
             'limit' => '10'
         ];
 
+//        $coordinates = [
+//            'minlatitude' => '-90',
+//            'maxlatitude' => '90',
+//            'minlongitude' => '-180',
+//            'maxlongitude' => '180',
+//        ];
+
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->getEarthquakes($params);
+        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
 
         if (empty($earthquakes->features)) {
             echo self::log('[Hoooray! No earthquakes detected!]', 'success');
