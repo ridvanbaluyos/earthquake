@@ -41,6 +41,9 @@
                     <a href="//aws.amazon.com/ec2/" target="_blank">Amazon EC2</a> - Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.
                 </li>
                 <li>
+                    <a href="//aws.amazon.com/elasticache/" target="_blank">Amazon ElastiCache</a> - Amazon ElastiCache is a web service that makes it easy to deploy, operate, and scale an in-memory data store or cache in the cloud.
+                </li>
+                <li>
                     <a href="//semaphore.co/" target="_blank">Semaphore</a> - Semaphore lets you send an SMS with a single line of code. No complicated setup, no dealing with telecom protocols and procedures.
                 </li>
                 <li>
