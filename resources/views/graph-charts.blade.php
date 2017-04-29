@@ -21,7 +21,7 @@
             <div class="col-lg-3 col-sm-1">
                 <div class="form-group">
                     <select class="form-control" name="filter">
-                        @foreach (['Days' =>'days', 'Months' => 'months', 'Years' => 'years'] as $k=>$v)
+                        @foreach (['Days' =>'day', 'Months' => 'month', 'Years' => 'year'] as $k=>$v)
                             <option value="{{ $v }}" @if ($data['params']['filter'] == $v) selected="selected"@endif>{{ ucfirst($k) }}</option>
                         @endforeach
                     </select>
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class ="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-line-chart"></i> Earthquake Count</h3>
@@ -99,7 +99,7 @@
         <div class="col-lg-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Hour</h3>
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Hour (GMT +8)</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -111,35 +111,35 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-thermometer-half"></i> Heatmap</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-1">
-                            <div id="heatmap_canvas" style="width: 100%; height: 600px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-genderless"></i> Circlemap</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-1">
-                            <div id="circlemap_canvas" style="width: 100%; height: 600px;"></div>
-                        </div>
-                    </div>
+        {{--<div class="col-lg-6">--}}
+            {{--<div class="panel panel-primary">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<h3 class="panel-title"><i class="fa fa-thermometer-half"></i> Heatmap</h3>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-lg-12 col-sm-1">--}}
+                            {{--<div id="heatmap_canvas" style="width: 100%; height: 600px;"></div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="col-lg-6">--}}
+            {{--<div class="panel panel-primary">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<h3 class="panel-title"><i class="fa fa-genderless"></i> Circlemap</h3>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-lg-12 col-sm-1">--}}
+                            {{--<div id="circlemap_canvas" style="width: 100%; height: 600px;"></div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
-                </div>
-            </div>
-        </div>
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 @endsection
 
@@ -265,8 +265,8 @@
 
     function initMap()
     {
-        generateHeatmap(earthquakeData);
-        generateCircleMap(earthquakeData);
+//        generateHeatmap(earthquakeData);
+//        generateCircleMap(earthquakeData);
     }
 
     function generateCircleMap(results)

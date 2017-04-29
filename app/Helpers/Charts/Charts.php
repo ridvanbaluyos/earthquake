@@ -2,8 +2,20 @@
 
 namespace App\Helpers\Charts;
 
+use App\Helpers\DateHelper\DateHelper;
+/**
+ * Class ChartHelper
+ * @package App\Helpers\Charts
+ */
 class ChartHelper
 {
+    /**
+     * This functions formats the data result from USGS to Charts.js data format.
+     *
+     * @param $data
+     * @param string $filter
+     * @return mixed
+     */
     public static function formatStackedAreaChart($data, $filter = 'days')
     {
         $earthquakes = [];
@@ -11,7 +23,7 @@ class ChartHelper
         $below = [];
 
         switch ($filter) {
-            case 'days':
+            case 'day':
                 $dateFormat = 'd M Y';
                 break;
             case 'month':
@@ -24,14 +36,16 @@ class ChartHelper
                 $dateFormat = 'l';
                 break;
             case 'hour':
-                $dateFormat = 'gA';
+                $dateFormat = 'H';
                 break;
             default:
                 $dateFormat = 'M Y';
         }
 
+
         foreach ($data->features as $earthquake) {
-            $date = date($dateFormat, intval($earthquake->properties->time)/1000);
+            $date = date($dateFormat, intval($earthquake->properties->time)/1000 + (8 * 3600));
+//            $date = DateHelper::convertDate($earthquake->properties->time, true);
             if (!isset($earthquakes[$date])) {
                 $earthquakes[$date] = [];
             }
@@ -82,6 +96,13 @@ class ChartHelper
         return $areaChart;
     }
 
+    /**
+     * This function returns the magnitude label depending on the scale used.
+     *
+     * @param $value
+     * @param string $scale
+     * @return string
+     */
     public static function getMagnitudeLabel($value, $scale = 'richter')
     {
         $properties = self::getMagnitudeLabelProperties($value, $scale);
@@ -90,6 +111,13 @@ class ChartHelper
         return $html;
     }
 
+    /**
+     * This function returns the scale properties (color and label).
+     *
+     * @param int $value
+     * @param string $scale
+     * @return array
+     */
     public static function getMagnitudeLabelProperties($value = 0, $scale = 'richter')
     {
         $properties = [];
@@ -107,6 +135,12 @@ class ChartHelper
         return $properties;
     }
 
+    /**
+     * This function returns the richter scale properties.
+     *
+     * @param $value
+     * @return array
+     */
     public static function getRichterScaleProperties($value)
     {
         $scaleReference = config('references.intensity_labels.richter');
@@ -123,6 +157,11 @@ class ChartHelper
         return ['color' => '#000000', 'label' => 'Unknown'];
     }
 
+    /**
+     * This function returns the mercalli scale properties.
+     * @param $value
+     * @return array
+     */
     public static function getMercalliScaleProperties($value)
     {
         $scaleReference = config('references.intensity_labels.richter');

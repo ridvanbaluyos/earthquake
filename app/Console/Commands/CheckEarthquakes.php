@@ -8,6 +8,10 @@ use App\Repositories\EarthquakeRepository;
 use App\Mail\EarthquakeAlert;
 use Carbon\Carbon;
 
+/**
+ * Class CheckEarthquakes
+ * @package App\Console\Commands
+ */
 class CheckEarthquakes extends Command
 {
     /**
@@ -96,6 +100,11 @@ class CheckEarthquakes extends Command
 
     }
 
+    /**
+     * This function sends an Email notification.
+     *
+     * @param $earthquakes
+     */
     private static function sendNotifications($earthquakes)
     {
         $subject = '[ALERT] ' . count($earthquakes->features) . ' earthquake(s) detected';
@@ -112,6 +121,12 @@ class CheckEarthquakes extends Command
 
     }
 
+    /**
+     * This function sends an SMS alert.
+     *
+     * @param $message
+     * @param bool $debug
+     */
     private static function sendSms($message, $debug = false)
     {
         if ($debug) {

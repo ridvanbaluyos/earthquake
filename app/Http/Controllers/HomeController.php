@@ -27,7 +27,10 @@ class HomeController extends BaseController
         ];
 
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
+        $earthquakes = $usgs->setCacheTime(5)
+                        ->setCacheKeyPrefix('home')
+                        ->setParameters($params)
+                        ->getEarthquakes();
 
         unset($usgs);
 
@@ -46,10 +49,17 @@ class HomeController extends BaseController
 
         ];
         $usgs = new EarthquakeRepository();
-        $biggestEarthquakeToday = $usgs->setCoordinates($coordinates)->setParameters($params)->getEarthquakes();
+        $biggestEarthquakeToday = $usgs->setCacheTime(5)
+                                    ->setCacheKeyPrefix('biggest')
+                                    ->setCoordinates($coordinates)
+                                    ->setParameters($params)
+                                    ->getEarthquakes();
 
         unset($params['orderby']);
-        $latestEarthquakesToday = $usgs->setParameters($params)->getEarthquakes($params);
+        $latestEarthquakesToday = $usgs->setCacheTime(5)
+                                    ->setCacheKeyPrefix('latest')
+                                    ->setParameters($params)
+                                    ->getEarthquakes($params);
 
         $data['earthquakes'] = $earthquakes;
         $data['biggest_earthquake_today'] = $biggestEarthquakeToday;
@@ -67,20 +77,20 @@ class HomeController extends BaseController
 
         $period = $request->input('period', $period);
         $graphType = $request->input('type', 'line');
-        $filter = $request->input('filter', 'days');
+        $filter = $request->input('filter', 'day');
 
         $params = [
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
         ];
 
-        if ($period > 7200) {
+        if ($period >= 7200) {
             $params['minmagnitude'] = '4';
-            $filter = 'years';
+            $filter = 'year';
         }
 
         ini_set('memory_limit', '1024M');
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
+        $earthquakes = $usgs->setCacheKeyPrefix('graphs')->setParameters($params)->getEarthquakes();
 
         $areaChart['graph'] = ChartHelper::formatStackedAreaChart($earthquakes, $filter);
         $areaChart['month'] = ChartHelper::formatStackedAreaChart($earthquakes, 'month');
@@ -114,7 +124,7 @@ class HomeController extends BaseController
         ];
 
         $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
+        $earthquakes = $usgs->setCacheKeyPrefix('history')->setParameters($params)->getEarthquakes();
 
         $params = [
             'minmagnitude' => 0,
@@ -166,7 +176,7 @@ class HomeController extends BaseController
         $data = [];
 
         $usgs =  new EarthquakeRepository();
-        $earthquake = $usgs->getEarthquake($id);
+        $earthquake = $usgs->setCacheTime(60)->getEarthquake($id);
 
         $data['earthquake'] = $earthquake;
         $data['url'] = $usgs->getSourceUrl();
@@ -201,11 +211,22 @@ class HomeController extends BaseController
 
     public function getTest()
     {
-        for($x = 1; $x <= 2; $x++){
-            for($y = 1; $y <= 3; $y++){
-                if ($x == $y) continue;
-                print("x = $x  y =  $y");
-            }
+        $findme    = 'a';
+        $mystring1 = 'xyz';
+        $mystring2 = 'ABC';
+
+        $pos1 = stripos($mystring1, $findme);
+        $pos2 = stripos($mystring2, $findme);
+
+        // Nope, 'a' is certainly not in 'xyz'
+        if ($pos1 === false) {
+            echo "The string '$findme' was not found in the string '$mystring1'";
+        }
+
+        // Note our use of ===.  Simply == would not work as expected
+        // because the position of 'a' is the 0th (first) character.
+        if ($pos2 !== false) {
+            echo "We found '$findme' in '$mystring2' at position $pos2";
         }
     }
 
