@@ -19,8 +19,10 @@ class ChartHelper
     public static function formatStackedAreaChart($data, $filter = 'days')
     {
         $earthquakes = [];
-        $above = [];
-        $below = [];
+        foreach (config('references.intensity_labels.richter') as $range=>$properties) {
+            $label = strtolower($properties['label']);
+            $$label = [];
+        }
 
         switch ($filter) {
             case 'day':
@@ -47,21 +49,20 @@ class ChartHelper
 
         foreach ($data->features as $earthquake) {
             $date = date($dateFormat, intval($earthquake->properties->time)/1000 + (8 * 3600));
-//            $date = DateHelper::convertDate($earthquake->properties->time, true);
             if (!isset($earthquakes[$date])) {
                 $earthquakes[$date] = [];
             }
 
-            if ($earthquake->properties->mag >= 5) {
-                if (!isset($earthquakes[$date]['above'])) {
-                    $earthquakes[$date]['above'] = [];
+            $mag = $earthquake->properties->mag;
+            foreach (config('references.intensity_labels.richter') as $range=>$properties) {
+                list($min, $max) = explode(',', $range);
+                $label = strtolower($properties['label']);
+                if ($mag >= $min && $mag < $max) {
+                    if (!isset($earthquakes[$date][$label])) {
+                        $earthquakes[$date][$label] = [];
+                    }
+                    array_push($earthquakes[$date][$label], $earthquake->properties);
                 }
-                array_push($earthquakes[$date]['above'], $earthquake->properties);
-            } else {
-                if (!isset($earthquakes[$date]['below'])) {
-                    $earthquakes[$date]['below'] = [];
-                }
-                array_push($earthquakes[$date]['below'], $earthquake->properties);
             }
         }
 
@@ -70,30 +71,25 @@ class ChartHelper
         } else {
             $earthquakes = array_reverse($earthquakes, true);
         }
-
         $dateLabels = '[\'' . implode('\',\'', array_keys($earthquakes)) . '\']';
 
         foreach ($earthquakes as $earthquake) {
-            if (!isset($earthquake['above'])) {
-                array_push($above, 0);
-            } else {
-                array_push($above, count($earthquake['above']));
-            }
+            foreach (config('references.intensity_labels.richter') as $range=>$properties) {
+                $label = strtolower($properties['label']);
 
-            if (!isset($earthquake['below'])) {
-                array_push($below, 0);
-            } else {
-                array_push($below, count($earthquake['below']));
+                if (!isset($earthquake[$label])) {
+                    array_push($$label, 0);
+                } else {
+                    array_push($$label, count($earthquake[$label]));
+                }
             }
-
         }
 
-        $aboveLabels = '[' . implode(',', $above) . ']';
-        $belowLabels = '[' . implode(',', $below) . ']';
-
         $areaChart['labels'] = $dateLabels;
-        $areaChart['aboveLabels'] = $aboveLabels;
-        $areaChart['belowLabels'] = $belowLabels;
+        foreach (config('references.intensity_labels.richter') as $range=>$properties) {
+            $label = strtolower($properties['label']);
+            $areaChart[$label . 'Labels'] = '[' . implode(',', $$label) . ']';
+        }
 
         return $areaChart;
     }
@@ -174,7 +170,6 @@ class ChartHelper
             if ($value >= $min && $value <= $max) {
                 return $properties;
             }
-
         }
 
         return ['color' => '#000000', 'label' => 'Unknown'];

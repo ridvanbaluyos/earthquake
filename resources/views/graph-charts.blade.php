@@ -116,12 +116,32 @@
         data: {
             labels: {!!   $data['area_chart']['graph']['labels'] !!},
             datasets: [{
-                label: '< 5.0mb',
-                data: {!!   $data['area_chart']['graph']['belowLabels'] !!},
+                label: 'micro',
+                data: {!! $data['area_chart']['graph']['microLabels'] !!},
+                backgroundColor: "#0000ff"
+            }, {
+                label: 'minor',
+                data: {!! $data['area_chart']['graph']['minorLabels'] !!},
+                backgroundColor: "#0d98ba"
+            }, {
+                label: 'small',
+                data: {!! $data['area_chart']['graph']['smallLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
-                label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['graph']['aboveLabels'] !!},
+                label: 'moderate',
+                data: {!! $data['area_chart']['graph']['moderateLabels'] !!},
+                backgroundColor: "#ffa500"
+            }, {
+                label: 'strong',
+                data: {!! $data['area_chart']['graph']['strongLabels'] !!},
+                backgroundColor: "#ff69b4"
+            }, {
+                label: 'major',
+                data: {!! $data['area_chart']['graph']['majorLabels'] !!},
+                backgroundColor: "#ff1493"
+            }, {
+                label: 'great',
+                data: {!! $data['area_chart']['graph']['greatLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
@@ -141,12 +161,32 @@
         data: {
             labels: {!!   $data['area_chart']['bymonth']['labels'] !!},
             datasets: [{
-                label: '< 5.0mb',
-                data: {!!   $data['area_chart']['bymonth']['belowLabels'] !!},
+                label: 'micro',
+                data: {!! $data['area_chart']['bymonth']['microLabels'] !!},
+                backgroundColor: "#0000ff"
+            }, {
+                label: 'minor',
+                data: {!! $data['area_chart']['bymonth']['minorLabels'] !!},
+                backgroundColor: "#0d98ba"
+            }, {
+                label: 'small',
+                data: {!! $data['area_chart']['bymonth']['smallLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
-                label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['bymonth']['aboveLabels'] !!},
+                label: 'moderate',
+                data: {!! $data['area_chart']['bymonth']['moderateLabels'] !!},
+                backgroundColor: "#ffa500"
+            }, {
+                label: 'strong',
+                data: {!! $data['area_chart']['bymonth']['strongLabels'] !!},
+                backgroundColor: "#ff69b4"
+            }, {
+                label: 'major',
+                data: {!! $data['area_chart']['bymonth']['majorLabels'] !!},
+                backgroundColor: "#ff1493"
+            }, {
+                label: 'great',
+                data: {!! $data['area_chart']['bymonth']['greatLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
@@ -166,12 +206,32 @@
         data: {
             labels: {!!   $data['area_chart']['byweekday']['labels'] !!},
             datasets: [{
-                label: '< 5.0mb',
-                data: {!!   $data['area_chart']['byweekday']['belowLabels'] !!},
+                label: 'micro',
+                data: {!! $data['area_chart']['byweekday']['microLabels'] !!},
+                backgroundColor: "#0000ff"
+            }, {
+                label: 'minor',
+                data: {!! $data['area_chart']['byweekday']['minorLabels'] !!},
+                backgroundColor: "#0d98ba"
+            }, {
+                label: 'small',
+                data: {!! $data['area_chart']['byweekday']['smallLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
-                label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['byweekday']['aboveLabels'] !!},
+                label: 'moderate',
+                data: {!! $data['area_chart']['byweekday']['moderateLabels'] !!},
+                backgroundColor: "#ffa500"
+            }, {
+                label: 'strong',
+                data: {!! $data['area_chart']['byweekday']['strongLabels'] !!},
+                backgroundColor: "#ff69b4"
+            }, {
+                label: 'major',
+                data: {!! $data['area_chart']['byweekday']['majorLabels'] !!},
+                backgroundColor: "#ff1493"
+            }, {
+                label: 'great',
+                data: {!! $data['area_chart']['byweekday']['greatLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
@@ -191,12 +251,32 @@
         data: {
             labels: {!!   $data['area_chart']['byhour']['labels'] !!},
             datasets: [{
-                label: '< 5.0mb',
-                data: {!!   $data['area_chart']['byhour']['belowLabels'] !!},
+                label: 'micro',
+                data: {!! $data['area_chart']['byhour']['microLabels'] !!},
+                backgroundColor: "#0000ff"
+            }, {
+                label: 'minor',
+                data: {!! $data['area_chart']['byhour']['minorLabels'] !!},
+                backgroundColor: "#0d98ba"
+            }, {
+                label: 'small',
+                data: {!! $data['area_chart']['byhour']['smallLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
-                label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['byhour']['aboveLabels'] !!},
+                label: 'moderate',
+                data: {!! $data['area_chart']['byhour']['moderateLabels'] !!},
+                backgroundColor: "#ffa500"
+            }, {
+                label: 'strong',
+                data: {!! $data['area_chart']['byhour']['strongLabels'] !!},
+                backgroundColor: "#ff69b4"
+            }, {
+                label: 'major',
+                data: {!! $data['area_chart']['byhour']['majorLabels'] !!},
+                backgroundColor: "#ff1493"
+            }, {
+                label: 'great',
+                data: {!! $data['area_chart']['byhour']['greatLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
