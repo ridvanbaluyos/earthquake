@@ -27,15 +27,18 @@ class ChartHelper
                 $dateFormat = 'd M Y';
                 break;
             case 'month':
+                $dateFormat = 'M Y';
+                break;
+            case 'bymonth':
                 $dateFormat = 'M';
                 break;
             case 'year':
                 $dateFormat = 'Y';
                 break;
-            case 'weekday':
+            case 'byweekday':
                 $dateFormat = 'l';
                 break;
-            case 'hour':
+            case 'byhour':
                 $dateFormat = 'H';
                 break;
             default:

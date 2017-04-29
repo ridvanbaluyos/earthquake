@@ -3,30 +3,6 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <header class="jumbotron hero-spacer">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Get Notified!</h1>
-                    <p>Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs!</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter Email" id="email" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="button" onclick="track();">Subscribe!</button>
-                        </span>
-                    </div>
-                    <small><em>* No spam, promise!</em></small><br>
-                    <small><em>** Message me if you want SMS alerts. Limited slots only.</em></small><br>
-                </div>
-            </div>
-        </header>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
         <div class="alert alert-danger">
             <strong>Biggest Earthquake Today: </strong>
             @if (empty($data['biggest_earthquake_today']))
@@ -93,6 +69,30 @@
         </div>
     </div>
     @endforeach
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <header class="jumbotron hero-spacer">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Get Notified!</h1>
+                    <p>Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter Email" id="email" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="button" onclick="track();">Subscribe!</button>
+                        </span>
+                    </div>
+                    <small><em>* No spam, promise!</em></small><br>
+                    <small><em>** Message me if you want SMS alerts. Limited slots only.</em></small><br>
+                </div>
+            </div>
+        </header>
+    </div>
 </div>
 @endsection
 

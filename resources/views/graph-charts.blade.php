@@ -175,14 +175,14 @@
     var byMonth = new Chart(byMonthX, {
         type: '{!! $data['params']['type'] !!}',
         data: {
-            labels: {!!   $data['area_chart']['month']['labels'] !!},
+            labels: {!!   $data['area_chart']['bymonth']['labels'] !!},
             datasets: [{
                 label: '< 5.0mb',
-                data: {!!   $data['area_chart']['month']['belowLabels'] !!},
+                data: {!!   $data['area_chart']['bymonth']['belowLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
                 label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['month']['aboveLabels'] !!},
+                data: {!!   $data['area_chart']['bymonth']['aboveLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
@@ -200,14 +200,14 @@
     var byWeekday = new Chart(byWeekdayX, {
         type: '{!! $data['params']['type'] !!}',
         data: {
-            labels: {!!   $data['area_chart']['weekday']['labels'] !!},
+            labels: {!!   $data['area_chart']['byweekday']['labels'] !!},
             datasets: [{
                 label: '< 5.0mb',
-                data: {!!   $data['area_chart']['weekday']['belowLabels'] !!},
+                data: {!!   $data['area_chart']['byweekday']['belowLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
                 label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['weekday']['aboveLabels'] !!},
+                data: {!!   $data['area_chart']['byweekday']['aboveLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },
@@ -225,14 +225,14 @@
     var byHour = new Chart(byHourX, {
         type: '{!! $data['params']['type'] !!}',
         data: {
-            labels: {!!   $data['area_chart']['hour']['labels'] !!},
+            labels: {!!   $data['area_chart']['byhour']['labels'] !!},
             datasets: [{
                 label: '< 5.0mb',
-                data: {!!   $data['area_chart']['hour']['belowLabels'] !!},
+                data: {!!   $data['area_chart']['byhour']['belowLabels'] !!},
                 backgroundColor: "#00ff00"
             }, {
                 label: '>= 5.0mb',
-                data: {!!   $data['area_chart']['hour']['aboveLabels'] !!},
+                data: {!!   $data['area_chart']['byhour']['aboveLabels'] !!},
                 backgroundColor: "#ff0000"
             }]
         },

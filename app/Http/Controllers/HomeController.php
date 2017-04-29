@@ -23,7 +23,7 @@ class HomeController extends BaseController
             'minmagnitude' => 0,
             'maxmagnitude' => 10,
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
-            'limit' => '4'
+            'limit' => '8'
         ];
 
         $usgs = new EarthquakeRepository();
@@ -83,6 +83,9 @@ class HomeController extends BaseController
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
         ];
 
+        if ($period >= 1080 && $period < 7200) {
+            $filter = 'month';
+        }
         if ($period >= 7200) {
             $params['minmagnitude'] = '4';
             $filter = 'year';
@@ -93,9 +96,9 @@ class HomeController extends BaseController
         $earthquakes = $usgs->setCacheKeyPrefix('graphs')->setParameters($params)->getEarthquakes();
 
         $areaChart['graph'] = ChartHelper::formatStackedAreaChart($earthquakes, $filter);
-        $areaChart['month'] = ChartHelper::formatStackedAreaChart($earthquakes, 'month');
-        $areaChart['weekday'] = ChartHelper::formatStackedAreaChart($earthquakes, 'weekday');
-        $areaChart['hour'] = ChartHelper::formatStackedAreaChart($earthquakes, 'hour');
+        $areaChart['bymonth'] = ChartHelper::formatStackedAreaChart($earthquakes, 'bymonth');
+        $areaChart['byweekday'] = ChartHelper::formatStackedAreaChart($earthquakes, 'byweekday');
+        $areaChart['byhour'] = ChartHelper::formatStackedAreaChart($earthquakes, 'byhour');
 
         $url = $usgs->getSourceUrl();
 
