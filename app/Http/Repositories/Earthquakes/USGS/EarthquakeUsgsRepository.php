@@ -38,12 +38,7 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
         $this->cacheTime = 60 * 24; // 1 day;
 
         // Default to Philippines
-        $coordinates['minlatitude'] = config('app.minlatitude');
-        $coordinates['maxlatitude'] = config('app.maxlatitude');
-        $coordinates['minlongitude'] = config('app.minlongitude');
-        $coordinates['maxlongitude'] = config('app.maxlongitude');
-
-        $this->coordinates = $coordinates;
+        $this->coordinates = $this->getPhilippineCoordinates();
     }
 
     /**
@@ -211,12 +206,43 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
      */
     private function checkIfCacheableForever($date)
     {
+        // convert to Y-m-d first
+        $date = date('Y-m-d', strtotime($date));
+
         list($year, $month, $day) = explode('-', $date);
         $queryDate = Carbon::create($year, $month, $day);
         $now = Carbon::now(); // cacheable if date is more than a month
-
         $diff = $queryDate->diffInDays($now);
 
         return ($diff >= 30) ? true : false;
+    }
+
+    /**
+     * Returns the coordinates of the Philippines
+     *
+     * @return mixed
+     */
+    public function getPhilippineCoordinates()
+    {
+        $coordinates = [
+            'minlatitude' => config('app.minlatitude'),
+            'maxlatitude' => config('app.maxlatitude'),
+            'minlongitude' => config('app.minlongitude'),
+            'maxlongitude' => config('app.maxlongitude'),
+        ];
+
+        return $coordinates;
+    }
+
+    public function getGlobalCoordinates()
+    {
+        $coordinates = [
+            'minlatitude' => '-90',
+            'maxlatitude' => '90',
+            'minlongitude' => '-180',
+            'maxlongitude' => '180',
+        ];
+
+        return $coordinates;
     }
 }
