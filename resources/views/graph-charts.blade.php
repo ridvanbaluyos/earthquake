@@ -43,13 +43,6 @@
             </div>
         </form>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <p class="text-left">
-                <small>Note: querying 20 years and above will automatically be filtered to significant earthquakes (Magnitude 4 and up) only.</small>
-            </p>
-        </div>
-    </div>
     <div class ="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">

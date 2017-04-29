@@ -87,7 +87,6 @@ class HomeController extends BaseController
             $filter = 'month';
         }
         if ($period >= 7200) {
-            $params['minmagnitude'] = '4';
             $filter = 'year';
         }
 

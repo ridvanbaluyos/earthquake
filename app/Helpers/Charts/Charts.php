@@ -45,7 +45,6 @@ class ChartHelper
                 $dateFormat = 'M Y';
         }
 
-
         foreach ($data->features as $earthquake) {
             $date = date($dateFormat, intval($earthquake->properties->time)/1000 + (8 * 3600));
 //            $date = DateHelper::convertDate($earthquake->properties->time, true);
@@ -66,7 +65,7 @@ class ChartHelper
             }
         }
 
-        if ($filter == 'hour') {
+        if ($filter == 'byhour') {
             ksort($earthquakes, true);
         } else {
             $earthquakes = array_reverse($earthquakes, true);
