@@ -34,12 +34,6 @@ class HomeController extends BaseController
 
         unset($usgs);
 
-        $coordinates = [
-            'minlatitude' => '-90',
-            'maxlatitude' => '90',
-            'minlongitude' => '-180',
-            'maxlongitude' => '180',
-        ];
         $params = [
             'minmagnitude' => 0,
             'maxmagnitude' => 11,
@@ -51,19 +45,20 @@ class HomeController extends BaseController
         $usgs = new EarthquakeRepository();
         $biggestEarthquakeToday = $usgs->setCacheTime(5)
                                     ->setCacheKeyPrefix('biggest')
-                                    ->setCoordinates($coordinates)
+                                    ->setCoordinates($usgs->getGlobalCoordinates())
                                     ->setParameters($params)
                                     ->getEarthquakes();
 
         unset($params['orderby']);
         $latestEarthquakesToday = $usgs->setCacheTime(5)
                                     ->setCacheKeyPrefix('latest')
+                                    ->setCoordinates($usgs->getGlobalCoordinates())
                                     ->setParameters($params)
                                     ->getEarthquakes($params);
 
         $data['earthquakes'] = $earthquakes;
         $data['biggest_earthquake_today'] = $biggestEarthquakeToday;
-        $data['latest-earthquake_today'] = $latestEarthquakesToday;
+        $data['latest_earthquake_today'] = $latestEarthquakesToday;
 
         return response()
             ->view('home', ['data' => $data]);

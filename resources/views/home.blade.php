@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-danger">
-            <strong>Biggest Earthquake Today: </strong>
+            <strong>Biggest Earthquake in the world today: </strong>
             @if (empty($data['biggest_earthquake_today']))
                 No earthquakes today!
             @else
