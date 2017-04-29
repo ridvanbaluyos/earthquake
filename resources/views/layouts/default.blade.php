@@ -63,9 +63,9 @@
                     <li>
                         <a href="/earthquake-graphs-charts"><i class="fa fa-line-chart"></i> Graphs</a>
                     </li>
-                    {{--<li>--}}
-                        {{--<a href="/earthquake-heatmap"><i class="fa fa-thermometer-half"></i> Heatmap</a>--}}
-                    {{--</li>--}}
+                    <li>
+                        <a href="/earthquake-heatmap"><i class="fa fa-thermometer-half"></i> Heatmap</a>
+                    </li>
                     <li>
                         <a href="/earthquake-safety-and-preparedness"><i class="fa fa-fw fa-life-saver"></i> Safety and Preparedness</a>
                     </li>

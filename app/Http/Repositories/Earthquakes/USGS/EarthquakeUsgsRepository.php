@@ -234,6 +234,30 @@ class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
         return $coordinates;
     }
 
+    public function getLuzonCoordinates()
+    {
+        $coordinates = [
+            'minlatitude' => '12',
+            'maxlatitude' => '20',
+            'minlongitude' => '115',
+            'maxlongitude' => '127',
+        ];
+
+        return $coordinates;
+    }
+
+    public function getVisayasCoordinates()
+    {
+        $coordinates = [
+            'minlatitude' => '12',
+            'maxlatitude' => '20',
+            'minlongitude' => '115',
+            'maxlongitude' => '127',
+        ];
+
+        return $coordinates;
+    }
+
     public function getGlobalCoordinates()
     {
         $coordinates = [

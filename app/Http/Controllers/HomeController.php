@@ -106,28 +106,49 @@ class HomeController extends BaseController
 
         return response()
             ->view('graph-charts', ['data' => $data]);
-
     }
 
-    public function getEarthquakeHistory()
+    public function getHeatmap(Request $request)
+    {
+        $data = [];
+        $period = $request->input('period', 30);
+        $graphType = $request->input('type', 'line');
+
+        $params = [
+            'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
+        ];
+
+        ini_set('memory_limit', '1024M');
+        $usgs = new EarthquakeRepository();
+        $earthquakes = $usgs->setCacheKeyPrefix('graphs')->setParameters($params)->getEarthquakes();
+
+        $url = $usgs->getSourceUrl();
+
+        $data['earthquakes'] = $earthquakes;
+        $data['params'] = $params;
+        $data['params']['period'] = $period;
+        $data['params']['type'] = $graphType;
+        $data['url'] = $url;
+
+        return response()
+            ->view('heatmap', ['data' => $data]);
+    }
+
+
+    public function getEarthquakeHistory(Request $request)
     {
         $data = [];
 
-        $period = 90;
+        $period = $request->input('period', 30);
         $params = [
-            'minmagnitude' => 0,
-            'maxmagnitude' => 10,
+            'minmagnitude' => $request->input('minmagnitude', 0),
+            'maxmagnitude' => $request->input('maxmagnitude', 10),
             'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
         ];
 
         $usgs = new EarthquakeRepository();
         $earthquakes = $usgs->setCacheKeyPrefix('history')->setParameters($params)->getEarthquakes();
 
-        $params = [
-            'minmagnitude' => 0,
-            'maxmagnitude' => 10,
-        ];
-
         $data['earthquakes'] = $earthquakes;
         $data['params'] = $params;
         $data['params']['period'] = $period;
@@ -135,38 +156,6 @@ class HomeController extends BaseController
         return response()
             ->view('history', ['data' => $data]);
     }
-
-    public function postEarthquakeHistory(Request $request)
-    {
-        $data = [];
-
-        // date
-        $period = $request->input('period', 30);
-        $startDate = date('Y-m-d', strtotime('- ' . $period . 'days'));
-        $endDate = date('Y-m-d');
-
-        // magnitude
-        $minMagnitude = $request->input('minmagnitude', 0);
-        $maxMagnitude = $request->input('maxmagnitude', 10);
-
-        $params = [
-            'starttime' => $startDate,
-            'endtime' => $endDate,
-            'minmagnitude' => $minMagnitude,
-            'maxmagnitude' => $maxMagnitude,
-
-        ];
-        $usgs = new EarthquakeRepository();
-        $earthquakes = $usgs->setParameters($params)->getEarthquakes();
-
-        $data['earthquakes'] = $earthquakes;
-        $data['params'] = $params;
-        $data['params']['period'] = $period;
-
-        return response()
-            ->view('history', ['data' => $data]);
-    }
-
 
     public function getEarthquakeDetails(Request $request, $id)
     {
