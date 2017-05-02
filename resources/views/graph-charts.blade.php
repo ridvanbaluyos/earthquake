@@ -44,7 +44,7 @@
         </form>
     </div>
     <div class ="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-sm-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-line-chart"></i> Earthquake Count</h3>
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-sm-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Month</h3>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-sm-1"">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Weekday</h3>
@@ -85,11 +85,10 @@
                             <canvas id="earthquake_count_by_weekday"></canvas>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-sm-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Earthquakes by Hour (GMT +8)</h3>

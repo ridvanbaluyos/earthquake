@@ -26,7 +26,7 @@ class ChartHelper
 
         switch ($filter) {
             case 'day':
-                $dateFormat = 'd M Y';
+                $dateFormat = 'd M';
                 break;
             case 'month':
                 $dateFormat = 'M Y';
