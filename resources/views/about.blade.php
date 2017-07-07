@@ -27,12 +27,6 @@
                 <li>
                     <a href=//developers.google.com/maps/" target="_blank">Google Maps API</a> - Millions of websites and apps use Google Maps APIs to power location experiences for their users.
                 </li>
-                <li>
-                    <a href="//www.iconj.com/" target="_blank">IconJ</a> - Manage Your Website Favicon Dynamically.
-                </li>
-                <li>
-                    <a href="//startbootstrap.com/template-overviews/heroic-features/" target="_blank">Heroic Features</a> - Free Bootstrap Themes & Templates.
-                </li>
             </ul>
             <hr>
             <h5>Infrastructure</h5>
