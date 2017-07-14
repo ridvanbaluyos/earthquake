@@ -104,7 +104,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <p class="text-center">
-                    <small>nose boop <a href="https://ridvanbaluyos.com">ridvanbaluyos.com</a></small>
+                    <small>&copy; <a href="https://earthquake.ph">earthquake.ph</a></small>
                 </p>
             </div>
         </div>
