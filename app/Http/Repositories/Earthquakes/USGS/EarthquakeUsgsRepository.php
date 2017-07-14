@@ -11,7 +11,7 @@ use Carbon\Carbon;
  *
  * @package    Earthquake Alert
  * @author     Ridvan Baluyos <ridvan@baluyos.net>
- * @link       https://github.com/ridvanbaluyos/earthquake-alert
+ * @link       https://github.com/ridvanbaluyos/earthquake
  * @license    MIT
  */
 class EarthquakeUsgsRepository implements EarthquakeRepositoryInterface
