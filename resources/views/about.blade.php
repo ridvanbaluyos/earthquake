@@ -18,9 +18,6 @@
                 <li>
                     <a href="//www.usgs.gov/">United States Geological Survey</a> - Science for a change world.
                 </li>
-                <li>
-                    <a href="//bible-api.com" target="_blank">Bible API</a> - This is a tiny little web app that provides a JSON API for grabbing Bible verses and passages.
-                </li>
             </ul>
         </div>
     </div>
