@@ -62,6 +62,11 @@ class HomeController extends BaseController
 
 
         if ($request->route()->uri() === 'amp') {
+            // disable newrelic monitoring for AMP pages.
+            if (extension_loaded('newrelic')) { // Ensure PHP agent is available
+                newrelic_disable_autorum();
+            }
+
             return response()
                 ->view('amp.home', ['data' => $data]);
         } else {
