@@ -60,8 +60,15 @@ class HomeController extends BaseController
         $data['biggest_earthquake_today'] = $biggestEarthquakeToday;
         $data['latest_earthquake_today'] = $latestEarthquakesToday;
 
-        return response()
-            ->view('home', ['data' => $data]);
+
+        if ($request->route()->uri() === 'amp') {
+            return response()
+                ->view('amp.home', ['data' => $data]);
+        } else {
+            return response()
+                ->view('home', ['data' => $data]);
+        }
+
     }
 
     public function getGraphCharts(Request $request)
