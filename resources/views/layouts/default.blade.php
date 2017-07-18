@@ -104,7 +104,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <p class="text-center">
-                    <small>&copy; {{ date('Y') }} <a href="https://earthquake.ph">earthquake.ph</a></small>
+                    <small>&copy; {{ date('Y') }} <a href="//earthquake.ph">earthquake.ph</a></small> · 
+                    <small><a href="//github.com/ridvanbaluyos/earthquake">source code</a></small>
                 </p>
             </div>
         </div>
