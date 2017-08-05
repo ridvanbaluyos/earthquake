@@ -1,0 +1,8 @@
+{
+  short_name: "EarthquakePH",
+  name: "EarthquakePH",
+  background_color: "#682591",
+  theme_color: "#682591",
+  display: "standalone",
+  start_url: "/?utm_source=homescreen"
+}
