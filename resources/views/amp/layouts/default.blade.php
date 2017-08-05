@@ -523,7 +523,7 @@
 </head>
 
 <body itemscope="itemscope" itemtype="http://schema.org/WebPage">
-<button class="btn-amp-sidebar" on="tap:sidebar.toggle"></button>
+<button class="btn-amp-sidebar" on="tap:sidebar.toggle" aria-label="Sidebar Menu"></button>
 <amp-sidebar id="sidebar" layout="nodisplay" side="left">
     <nav>
         <ul>

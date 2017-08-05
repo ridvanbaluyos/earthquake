@@ -50,7 +50,7 @@
         </div>
     </div>
     <aside id="sidebar-wrapper">
-        <div class="sidebar no-items section" id="sidebar"></div>
+        <div class="sidebar no-items section" id="sidebarNoItems"></div>
     </aside>
     <div class="clear">&#160;</div>
 </div>
