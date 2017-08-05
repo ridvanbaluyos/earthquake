@@ -8,8 +8,8 @@
     <meta name="description" content="Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs. It also provides safety, graphs and charts, references, and useful information about earthquakes."/>
     <meta name="keywords" content="earthquake today, earthquake philippines, earthquake alert, earthquake alert philippines, phivolcs" />
 
-    <link rel="canonical" href="https://earthquake.ph"/>
-    <link rel="amphtml" href="https://earthquake.ph/amp" />
+    <link href="https://www.earthquake.ph/amp" rel="amphtml"/>
+    <link href="https://www.earthquake.ph" rel="canonical"/>
 
     <meta property="og:locale" content="en_US"/>
     <meta property="og:type" content="website"/>

@@ -36,4 +36,6 @@ Route::get('/test', 'HomeController@getTest');
 Route::prefix('amp')->group(function () {
     Route::get('/', 'HomeController@getIndex')
         ->name('amp-homepage');
+
+    
 });
