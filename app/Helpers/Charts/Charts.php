@@ -101,10 +101,15 @@ class ChartHelper
      * @param string $scale
      * @return string
      */
-    public static function getMagnitudeLabel($value, $scale = 'richter')
+    public static function getMagnitudeLabel($value, $scale = 'richter', $withStyle=true)
     {
         $properties = self::getMagnitudeLabelProperties($value, $scale);
-        $html = '<span class="label" style="background: ' . $properties['color'] . '">' . $properties['label'] . '</span>';
+
+        if ($withStyle) {
+            $html = '<span class="label" style="background: ' . $properties['color'] . '">' . $properties['label'] . '</span>';
+        } else {
+            $html = $properties['label'];
+        }
 
         return $html;
     }
