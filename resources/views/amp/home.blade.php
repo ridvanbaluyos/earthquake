@@ -31,7 +31,7 @@
                                             {{ $earthquake->properties->title }}
                                         </div>
                                     </div>
-                                    <div class="post-body entry-content" id="post-body-320903767827691939">
+                                    <div class="post-body entry-content" id="post-body-{{ $earthquake->id }}">
                                         <div class="post-snippet">
                                             <small>
                                                 {{ \App\Helpers\DateHelper\DateHelper::convertDate($earthquake->properties->time) }}
