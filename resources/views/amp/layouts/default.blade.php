@@ -21,6 +21,7 @@
 
     <link href="https://www.earthquake.ph/amp" rel="amphtml"/>
     <link href="https://www.earthquake.ph" rel="canonical"/>
+    <link rel="manifest" href="/manifest.json">
 
     <link rel="shortcut icon" href="/favicon.gif" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
