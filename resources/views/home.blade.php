@@ -3,6 +3,30 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
+        <header class="jumbotron hero-spacer">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Get Notified!</h1>
+                    <p>Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter Email" id="email" />
+                        <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" onclick="track();">Subscribe!</button>
+                    </span>
+                    </div>
+                    <small><em>* No spam, promise!</em></small><br>
+                    <small><em>** Message me if you want SMS alerts. Limited slots only.</em></small><br>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
         <div class="alert alert-danger">
             <strong>Biggest Earthquake in the world today: </strong>
             @if (empty($data['biggest_earthquake_today']))
@@ -15,25 +39,6 @@
         </div>
     </div>
 </div>
-{{--<hr>--}}
-{{--<div class="row">--}}
-    {{--<div class="col-lg-6">--}}
-        {{--<div class="panel panel-success">--}}
-            {{--<div class="panel-heading">Philippine Earthquake Stats</div>--}}
-            {{--<div class="panel-body">--}}
-                {{--Panel content--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="col-lg-6">--}}
-        {{--<div class="panel panel-info">--}}
-            {{--<div class="panel-heading">Global Earthquake Stats</div>--}}
-            {{--<div class="panel-body">--}}
-                {{--Panel content--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
 <div class="row">
     <div class="col-lg-12">
         <h3>Recent Earthquakes in the Philippines</h3>
@@ -69,30 +74,6 @@
         </div>
     </div>
     @endforeach
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <header class="jumbotron hero-spacer">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Get Notified!</h1>
-                    <p>Earthquake Philippines sends SMS and E-mail alerts whenever an earthquake occurs!</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter Email" id="email" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="button" onclick="track();">Subscribe!</button>
-                        </span>
-                    </div>
-                    <small><em>* No spam, promise!</em></small><br>
-                    <small><em>** Message me if you want SMS alerts. Limited slots only.</em></small><br>
-                </div>
-            </div>
-        </header>
-    </div>
 </div>
 @endsection
 
