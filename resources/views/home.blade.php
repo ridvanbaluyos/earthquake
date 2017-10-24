@@ -62,10 +62,10 @@
                         {{ \App\Helpers\DateHelper\DateHelper::convertDate($earthquake->properties->time) }}
                     </small>
                     <br>
-                    <small>
-                        <i class="fa fa-arrows-v"></i>
-                        {{ $earthquake->geometry->coordinates[2] }} km
-                    </small>
+                    {{--<small>--}}
+                        {{--<i class="fa fa-arrows-v"></i>--}}
+                        {{--{{ $earthquake->geometry->coordinates[2] }} km--}}
+                    {{--</small>--}}
                     <br>
                     <br>
                     <a href="/earthquakes/{{ $earthquake->id }}" type="button" class="btn btn-xs">more info <i class="fa fa-arrow-circle-o-right"></i></a>
