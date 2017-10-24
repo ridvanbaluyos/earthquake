@@ -80,10 +80,10 @@ class HomeController extends BaseController
     {
         $data = [];
 
-        $period = 30;
+        $period = 180;
 
         $period = $request->input('period', $period);
-        $graphType = $request->input('type', 'line');
+        $graphType = $request->input('type', 'bar');
         $filter = $request->input('filter', 'day');
 
         $params = [
