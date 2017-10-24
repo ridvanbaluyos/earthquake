@@ -123,7 +123,7 @@ class HomeController extends BaseController
     public function getHeatmap(Request $request)
     {
         $data = [];
-        $period = $request->input('period', 30);
+        $period = $request->input('period', 180);
         $graphType = $request->input('type', 'line');
 
         $params = [
