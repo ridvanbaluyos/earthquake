@@ -11,26 +11,23 @@
 |
 */
 
-Route::get('/', 'HomeController@getIndex');
-Route::post('/', 'HomeController@getIndex');
-Route::get('/earthquakes', 'HomeController@getEarthquakeHistory');
-Route::post('/earthquakes', 'HomeController@getEarthquakeHistory');
+Route::match(['get', 'post'], '/', 'HomeController@getIndex');
 
-Route::get('/earthquakes/{id}', 'HomeController@getEarthquakeDetails');
+Route::match(['get', 'post'], '/earthquakes', 'HomeController@getEarthquakeHistory');
 
-Route::get('/earthquake-heatmap', 'HomeController@getHeatmap');
-Route::post('/earthquake-heatmap', 'HomeController@getHeatmap');
+Route::match(['get'], '/earthquakes/{id}', 'HomeController@getEarthquakeDetails');
 
-Route::get('/earthquake-graphs-charts', 'HomeController@getGraphCharts');
-Route::post('/earthquake-graphs-charts', 'HomeController@getGraphCharts');
+Route::match(['get', 'post'], '/earthquake-heatmap', 'HomeController@getHeatmap');
 
-Route::get('/earthquake-101', 'HomeController@getEarthquake101');
+Route::match(['get', 'post'], '/earthquake-graphs-charts', 'HomeController@getGraphCharts');
 
-Route::get('/earthquake-hotlines', 'HomeController@getHotlines');
+Route::match(['get'], '/earthquake-101', 'HomeController@getEarthquake101');
 
-Route::get('/about', 'HomeController@getAbout');
+Route::match(['get'], '/earthquake-hotlines', 'HomeController@getHotlines');
 
-Route::get('/test', 'HomeController@getTest');
+Route::match(['get'], '/about', 'HomeController@getAbout');
+
+Route::match(['get'], '/test', 'HomeController@getTest');
 
 
 Route::prefix('amp')->group(function () {
