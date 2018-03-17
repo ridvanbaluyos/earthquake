@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Repositories\EarthquakeRepository;
 use App\Helpers\Charts\ChartHelper;
 use App\Helpers\Bible\BibleHelper;
+use App\Helpers\MachineLearning\Predictor;
 
 class HomeController extends BaseController
 {
@@ -205,5 +206,49 @@ class HomeController extends BaseController
 
         return response()
             ->view('about', ['data' => $data]);
+    }
+
+    public function getPredict(Request $request)
+    {
+        $data = [];
+        $period = $request->input('period', 180);
+        $month = $request->input('month', 1);
+        $day = $request->input('day', 1);
+        $year = $request->input('year', date('Y', strtotime('+1 year')));
+        $hour = $request->input('hour', 0);
+
+        if ($request->method() === 'POST')
+        {
+            $params = [
+                'starttime' => date('Y-m-d', strtotime('-' . $period . ' days')),
+            ];
+
+            ini_set('memory_limit', '1024M');
+            $usgs = new EarthquakeRepository();
+            $earthquakes = $usgs->setCacheKeyPrefix('graphs')->setParameters($params)->getEarthquakes();
+
+            $dayOfWeek = date('w', mktime($hour, 0, 0, $month, $day, $year));
+
+            $predictor = new Predictor($earthquakes->features);
+            $earthquakeId = $predictor->predict([$dayOfWeek, $hour]);
+
+            $usgs = new EarthquakeRepository();
+            $earthquake = $usgs->setCacheTime(60)->getEarthquake($earthquakeId);
+
+            $data['earthquake'] = $earthquake;
+            $data['url'] = $usgs->getSourceUrl();
+
+            $data['params']['sample_count'] = $predictor->getSampleCount();
+
+        }
+
+        $data['params']['period'] = $period;
+        $data['params']['month'] = $month;
+        $data['params']['day'] = $day;
+        $data['params']['year'] = $year;
+        $data['params']['hour'] = $hour;
+
+        return response()
+            ->view('predict', ['data' => $data]);
     }
 }

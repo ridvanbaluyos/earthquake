@@ -29,6 +29,8 @@ Route::get('/about', 'HomeController@getAbout');
 
 Route::get('/test', 'HomeController@getTest');
 
+Route::match(['get', 'post'], '/predict', 'HomeController@getPredict');
+
 Route::prefix('amp')->group(function () {
     Route::get('/', 'HomeController@getIndex')
         ->name('amp-homepage');
